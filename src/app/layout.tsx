@@ -22,7 +22,7 @@ export default function RootLayout({
     <html lang="pt-BR">
       <body className={`${nunito.variable} font-sans antialiased`}>
         <Header />
-        <main className="pb-20">{children}</main>
+        <main>{children}</main>
       </body>
     </html>
   );
