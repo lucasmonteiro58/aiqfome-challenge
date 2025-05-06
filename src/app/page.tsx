@@ -1,7 +1,7 @@
 import { Footer } from "@/components/Footer";
 import { RestaurantCard } from "@/components/RestaurantCard";
 import { SearchInput } from "@/components/SearchInput";
-import restaurants from "@/data/restaurants.json";
+import { restaurants } from "@/data/restaurants";
 import { Restaurant } from "@/types/restaurant";
 import Image from "next/image";
 

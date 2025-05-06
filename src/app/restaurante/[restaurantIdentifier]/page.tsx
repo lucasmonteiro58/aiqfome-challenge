@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import restaurants from "@/data/restaurants.json";
+import { restaurants } from "@/data/restaurants";
 import { Restaurant } from "@/types/restaurant";
 import Image from "next/image";
 import { Footer } from "@/components/Footer";
@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default function RestaurantPage({ params }: Props) {
+export default async function RestaurantPage({ params }: Props) {
   const restaurant = (restaurants as Restaurant[]).find(
     (r) => r.identifier === params.restaurantIdentifier
   );

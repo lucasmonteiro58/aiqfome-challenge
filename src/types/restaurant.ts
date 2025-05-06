@@ -26,8 +26,8 @@ export interface Product {
   id: string;
   name: string;
   description: string;
-  image: string;
-  basePrice: number;
+  image?: string;
+  basePrice?: number;
   price: number;
   hasPromotions?: boolean;
   multiplePrices?: boolean;
@@ -48,6 +48,8 @@ export interface CustomizationOption {
   id: string;
   label: string;
   price: number;
+  basePrice?: number;
+  hasPromotions?: boolean;
   default?: boolean;
 }
 
