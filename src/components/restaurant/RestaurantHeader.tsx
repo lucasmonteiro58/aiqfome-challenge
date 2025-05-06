@@ -9,7 +9,7 @@ export function RestaurantHeader({
   logo: string;
 }) {
   return (
-    <div className="flex items-center justify-between gap-3">
+    <div className="flex flex-col  justify-between gap-3">
       <div className="flex items-center gap-3">
         <Image
           src={logo}
@@ -20,13 +20,18 @@ export function RestaurantHeader({
         />
         <h1 className="font-extrabold text-dark-text text-[1.25rem]">{name}</h1>
       </div>
-      <div className="text-purple-brand flex items-center gap-4">
-        <Share2 size={24} className="cursor-pointer" />
-        <Heart size={24} className="cursor-pointer" />
-        <div className="text-teal-brand font-bold flex items-center gap-1">
+      <div className="text-purple-brand flex items-center justify-between gap-4">
+        <div className="flex items-center gap-4">
+          <Share2 size={24} className="cursor-pointer" />
+          <Heart size={24} className="cursor-pointer" />
+        </div>
+        <a
+          href="#"
+          className="text-teal-brand font-bold flex items-center gap-1"
+        >
           <span>mais infos</span>
           <ChevronRight size={14} />
-        </div>
+        </a>
       </div>
     </div>
   );

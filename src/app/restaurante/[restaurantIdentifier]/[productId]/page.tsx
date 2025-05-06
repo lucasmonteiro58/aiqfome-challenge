@@ -9,7 +9,7 @@ export default async function ProductPage({
 }: {
   params: { restaurantIdentifier: string; productId: string };
 }) {
-  const { restaurantIdentifier } = await params;
+  const { restaurantIdentifier, productId } = await params;
   const restaurant = restaurants.find(
     (r) => r.identifier === restaurantIdentifier
   );
@@ -19,7 +19,8 @@ export default async function ProductPage({
   const allProducts = restaurant.categories.flatMap(
     (category) => category.products
   );
-  const product = allProducts.find((p) => p.id === params.productId);
+
+  const product = allProducts.find((p) => p.id === productId);
 
   if (!product) return notFound();
 
