@@ -24,8 +24,9 @@ type Props = {
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { restaurantIdentifier } = await params;
   const restaurant = (restaurants as Restaurant[]).find(
-    (r) => r.identifier === params.restaurantIdentifier
+    (r) => r.identifier === restaurantIdentifier
   );
   return {
     title: restaurant?.name ?? "Restaurante",
@@ -33,8 +34,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function RestaurantPage({ params }: Props) {
+  const { restaurantIdentifier } = await params;
   const restaurant = (restaurants as Restaurant[]).find(
-    (r) => r.identifier === params.restaurantIdentifier
+    (r) => r.identifier === restaurantIdentifier
   );
 
   if (!restaurant) return notFound();
@@ -48,7 +50,7 @@ export default async function RestaurantPage({ params }: Props) {
               src={restaurant.logo}
               alt={restaurant.name}
               width={36}
-              height={26}
+              height={36}
               className="rounded"
             />
             <div>

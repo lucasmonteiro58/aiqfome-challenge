@@ -17,7 +17,8 @@ export function Header() {
           src="/images/logo.png"
           alt="Logo"
           width={32}
-          height={24}
+          height={32}
+          className="w-auto"
           onClick={handleLogoClick}
         />
 
