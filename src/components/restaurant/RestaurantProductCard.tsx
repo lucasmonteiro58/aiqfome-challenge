@@ -17,7 +17,7 @@ export function RestaurantProductCard({
   return (
     <Link
       href={`/restaurante/${restaurantIdentifier}/${product.id}`}
-      className="flex bg-white rounded-lg pl-4 items-center gap-6 justify-between hover:bg-gray-50 transition-colors"
+      className="flex bg-white rounded-lg pl-2 items-center gap-6 justify-between hover:bg-gray-50 transition-colors"
     >
       <div className="flex flex-col flex-1">
         <h1 className="font-semibold text-dark-text text-sm">{product.name}</h1>

@@ -53,4 +53,10 @@ export interface CustomizationOption {
   default?: boolean;
 }
 
+export interface Favorites {
+  id: string;
+  name: string;
+  logo: string;
+}
+
 export type Substance = "alcohol" | "candy" | "gluten-free" | "spicy" | "vegan";

@@ -1,13 +1,14 @@
 import Image from "next/image";
-import { Share2, Heart, ChevronRight } from "lucide-react";
+import { Share2, ChevronRight } from "lucide-react";
+import { RestaurantFavoriteButton } from "./RestaurantFavoriteButton";
 
-export function RestaurantHeader({
-  name,
-  logo,
-}: {
+interface RestaurantHeaderProps {
   name: string;
   logo: string;
-}) {
+  id: string;
+}
+
+export function RestaurantHeader({ name, logo, id }: RestaurantHeaderProps) {
   return (
     <div className="flex flex-col  justify-between gap-3 px-4">
       <div className="flex items-center gap-3">
@@ -23,7 +24,7 @@ export function RestaurantHeader({
       <div className="text-purple-brand flex items-center justify-between gap-4">
         <div className="flex items-center gap-4">
           <Share2 size={24} className="cursor-pointer" />
-          <Heart size={24} className="cursor-pointer" />
+          <RestaurantFavoriteButton name={name} logo={logo} id={id} />
         </div>
         <a
           href="#"
