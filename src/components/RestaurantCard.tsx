@@ -11,7 +11,7 @@ export function RestaurantCard(props: Restaurant) {
 
   return (
     <div
-      onClick={() => router.push(`/${props.id}`)}
+      onClick={() => router.push(`restaurante/${props.identifier}`)}
       className="flex items-center gap-3  bg-container-97 hover:bg-container-95 transition cursor-pointer rounded-xl"
     >
       <Image

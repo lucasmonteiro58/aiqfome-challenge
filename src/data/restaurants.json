@@ -2,6 +2,7 @@
   {
     "id": "1",
     "name": "Matsuri Concept",
+    "identifier": "matsuri-concept",
     "logo": "/images/matsuri.png",
     "deliveryFee": 0,
     "deliveryEstimate": "30-40 min",
@@ -151,6 +152,7 @@
   {
     "id": "2",
     "name": "Burger King - Colombo",
+    "identifier": "burger-king-colombo",
     "logo": "/images/burgerking.png",
     "deliveryFee": 6,
     "deliveryEstimate": "25-35 min",
@@ -240,6 +242,7 @@
   {
     "id": "3",
     "name": "Subway - Avenida Center",
+    "identifier": "subway-avenida-center",
     "logo": "/images/subway.png",
     "deliveryFee": 6,
     "deliveryEstimate": "20-30 min",
@@ -331,6 +334,7 @@
   {
     "id": "4",
     "name": "McDonald’s – Novo Centro",
+    "identifier": "mcdonalds-novo-centro",
     "logo": "/images/mcdonalds.png",
     "deliveryFee": 0,
     "deliveryEstimate": "20-30 min",
