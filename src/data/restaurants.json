@@ -1,0 +1,433 @@
+[
+  {
+    "id": "1",
+    "name": "Matsuri Concept",
+    "logo": "/images/matsuri.png",
+    "deliveryFee": 0,
+    "deliveryEstimate": "30-40 min",
+    "distanceKm": 5.2,
+    "rating": 4.5,
+    "openingTime": "2025-05-06T10:00:00.000Z",
+    "closingTime": "2025-05-06T22:00:00.000Z",
+    "freeDeliveryThreshold": 35,
+    "minOrder": 15,
+    "categories": [
+      {
+        "id": "ceviches",
+        "name": "Ceviches",
+        "products": [
+          {
+            "id": "ceviche-salmao",
+            "name": "Ceviche de salmão",
+            "description": "salmão temperado com limão, cebola e pimenta",
+            "image": "/images/ceviche.png",
+            "basePrice": 19.9,
+            "customizations": [
+              {
+                "type": "single",
+                "required": true,
+                "title": "qual o tamanho?",
+                "options": [
+                  {
+                    "id": "medio",
+                    "label": "médio",
+                    "price": 19.9,
+                    "default": true
+                  },
+                  {
+                    "id": "grande",
+                    "label": "grande",
+                    "price": 28.9
+                  }
+                ]
+              },
+              {
+                "type": "multiple",
+                "required": true,
+                "min": 1,
+                "max": 2,
+                "title": "acompanhamentos",
+                "options": [
+                  {
+                    "id": "shoyu",
+                    "label": "shoyu",
+                    "price": 0
+                  },
+                  {
+                    "id": "gengibre",
+                    "label": "gengibre",
+                    "price": 0
+                  },
+                  {
+                    "id": "wasabi",
+                    "label": "wasabi",
+                    "price": 0
+                  },
+                  {
+                    "id": "sem",
+                    "label": "sem acompanhamentos",
+                    "price": 0
+                  }
+                ]
+              },
+              {
+                "type": "quantity",
+                "required": false,
+                "title": "vai querer bebida?",
+                "options": [
+                  {
+                    "id": "coca",
+                    "label": "coca-cola",
+                    "price": 5
+                  },
+                  {
+                    "id": "fanta",
+                    "label": "fanta laranja",
+                    "price": 5
+                  },
+                  {
+                    "id": "guarana",
+                    "label": "guaraná antarctica",
+                    "price": 5
+                  },
+                  {
+                    "id": "suco",
+                    "label": "suco prats laranja",
+                    "price": 6
+                  },
+                  {
+                    "id": "agua",
+                    "label": "água sem gás",
+                    "price": 3
+                  }
+                ]
+              },
+              {
+                "type": "single",
+                "required": false,
+                "title": "precisa de talher?",
+                "options": [
+                  {
+                    "id": "hashi",
+                    "label": "hashi",
+                    "price": 0
+                  },
+                  {
+                    "id": "descartavel",
+                    "label": "garfo e faca descartável",
+                    "price": 1
+                  }
+                ]
+              },
+              {
+                "type": "multiple",
+                "required": false,
+                "max": 2,
+                "title": "mais alguma coisa?",
+                "options": [
+                  {
+                    "id": "biscoito",
+                    "label": "biscoito da sorte",
+                    "price": 2
+                  },
+                  {
+                    "id": "rolinho",
+                    "label": "rolinho primavera",
+                    "price": 8
+                  },
+                  {
+                    "id": "guioza",
+                    "label": "guioza",
+                    "price": 6
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "name": "Burger King - Colombo",
+    "logo": "/images/burgerking.png",
+    "deliveryFee": 6,
+    "deliveryEstimate": "25-35 min",
+    "distanceKm": 3.5,
+    "rating": 4.7,
+    "openingTime": "2025-05-06T11:00:00.000Z",
+    "closingTime": "2025-05-06T23:00:00.000Z",
+    "freeDeliveryThreshold": 40,
+    "minOrder": 20,
+    "categories": [
+      {
+        "id": "burgers",
+        "name": "Hambúrgueres",
+        "products": [
+          {
+            "id": "whopper",
+            "name": "Whopper",
+            "description": "Pão com gergelim, carne grelhada, alface, tomate, maionese e ketchup",
+            "image": "/images/whopper.png",
+            "basePrice": 19.9,
+            "customizations": [
+              {
+                "type": "single",
+                "required": true,
+                "title": "quer em combo?",
+                "options": [
+                  {
+                    "id": "nao",
+                    "label": "só o lanche",
+                    "price": 0,
+                    "default": true
+                  },
+                  {
+                    "id": "combo",
+                    "label": "combo com batata e refri",
+                    "price": 12
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "chicken-sandwich",
+            "name": "Chicken Sandwich",
+            "description": "Sanduíche de frango empanado crocante",
+            "image": "/images/chicken.png",
+            "basePrice": 17.5,
+            "customizations": []
+          }
+        ]
+      },
+      {
+        "id": "bebidas",
+        "name": "Bebidas",
+        "products": [
+          {
+            "id": "refri-lata",
+            "name": "Refrigerante lata",
+            "description": "350ml",
+            "image": "/images/refri.png",
+            "basePrice": 6,
+            "customizations": [
+              {
+                "type": "single",
+                "required": true,
+                "title": "sabor",
+                "options": [
+                  {
+                    "id": "coca",
+                    "label": "Coca-Cola",
+                    "price": 0,
+                    "default": true
+                  },
+                  {
+                    "id": "guarana",
+                    "label": "Guaraná",
+                    "price": 0
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "name": "Subway - Avenida Center",
+    "logo": "/images/subway.png",
+    "deliveryFee": 6,
+    "deliveryEstimate": "20-30 min",
+    "distanceKm": 2.8,
+    "rating": 4.6,
+    "openingTime": "2025-05-06T10:00:00.000Z",
+    "closingTime": "2025-05-06T22:30:00.000Z",
+    "freeDeliveryThreshold": 30,
+    "minOrder": 18,
+    "categories": [
+      {
+        "id": "sanduiches",
+        "name": "Sanduíches",
+        "products": [
+          {
+            "id": "frango-teriyaki",
+            "name": "Frango Teriyaki",
+            "description": "Frango ao molho teriyaki com vegetais",
+            "image": "/images/frango-teriyaki.png",
+            "basePrice": 21.9,
+            "customizations": [
+              {
+                "type": "single",
+                "required": true,
+                "title": "tamanho",
+                "options": [
+                  {
+                    "id": "15cm",
+                    "label": "15cm",
+                    "price": 0,
+                    "default": true
+                  },
+                  {
+                    "id": "30cm",
+                    "label": "30cm",
+                    "price": 12
+                  }
+                ]
+              },
+              {
+                "type": "multiple",
+                "required": true,
+                "min": 2,
+                "max": 5,
+                "title": "quais vegetais?",
+                "options": [
+                  {
+                    "id": "alface",
+                    "label": "Alface",
+                    "price": 0
+                  },
+                  {
+                    "id": "tomate",
+                    "label": "Tomate",
+                    "price": 0
+                  },
+                  {
+                    "id": "cebola",
+                    "label": "Cebola",
+                    "price": 0
+                  },
+                  {
+                    "id": "picles",
+                    "label": "Picles",
+                    "price": 0
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sobremesas",
+        "name": "Sobremesas",
+        "products": [
+          {
+            "id": "cookie",
+            "name": "Cookie",
+            "description": "Cookie de chocolate Subway",
+            "image": "/images/cookie.png",
+            "basePrice": 4,
+            "customizations": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "name": "McDonald’s – Novo Centro",
+    "logo": "/images/mcdonalds.png",
+    "deliveryFee": 0,
+    "deliveryEstimate": "20-30 min",
+    "distanceKm": 3.0,
+    "rating": 4.7,
+    "openingTime": "2025-05-06T09:00:00.000Z",
+    "closingTime": "2025-05-06T23:59:00.000Z",
+    "freeDeliveryThreshold": 30,
+    "minOrder": 20,
+    "categories": [
+      {
+        "id": "lanche",
+        "name": "Lanches",
+        "products": [
+          {
+            "id": "big-mac",
+            "name": "Big Mac",
+            "description": "Dois hambúrgueres, alface, queijo, molho especial, cebola e picles no pão com gergelim.",
+            "image": "/images/bigmac.png",
+            "basePrice": 21.5,
+            "customizations": [
+              {
+                "type": "single",
+                "required": true,
+                "title": "tamanho",
+                "options": [
+                  {
+                    "id": "individual",
+                    "label": "Individual",
+                    "price": 0,
+                    "default": true
+                  },
+                  {
+                    "id": "combo",
+                    "label": "Combo com batata e refri",
+                    "price": 12
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "cheeseburger",
+            "name": "Cheeseburger",
+            "description": "Pão, carne, queijo e ketchup.",
+            "image": "/images/cheeseburger.png",
+            "basePrice": 9.9,
+            "customizations": []
+          }
+        ]
+      },
+      {
+        "id": "acompanhamentos",
+        "name": "Acompanhamentos",
+        "products": [
+          {
+            "id": "batata-media",
+            "name": "Batata Média",
+            "description": "Porção individual de batata frita crocante.",
+            "image": "/images/french-fries.png",
+            "basePrice": 8,
+            "customizations": []
+          }
+        ]
+      },
+      {
+        "id": "sobremesas",
+        "name": "Sobremesas",
+        "products": [
+          {
+            "id": "mcflurry",
+            "name": "McFlurry Ovomaltine",
+            "description": "Sorvete com pedaços crocantes de Ovomaltine.",
+            "image": "/images/mcflurry.png",
+            "basePrice": 12,
+            "customizations": [
+              {
+                "type": "multiple",
+                "required": false,
+                "title": "Adicionais",
+                "options": [
+                  {
+                    "id": "chocolate",
+                    "label": "Calda de chocolate",
+                    "price": 2
+                  },
+                  {
+                    "id": "caramelo",
+                    "label": "Calda de caramelo",
+                    "price": 2
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
