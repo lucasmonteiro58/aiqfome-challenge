@@ -145,7 +145,8 @@ export default function RestaurantPage({ params }: Props) {
                           )}
                           {product.hasPromotions && (
                             <span className="text-xs text-light-text font-bold mt-0.5 line-through">
-                              R$ {product.basePrice?.toFixed(2)}
+                              R${" "}
+                              {product.basePrice?.toFixed(2).replace(".", ",")}
                             </span>
                           )}
                           <span
@@ -161,7 +162,9 @@ export default function RestaurantPage({ params }: Props) {
                                 size={14}
                               />
                             )}
-                            <span>R$ {product.price?.toFixed(2)}</span>
+                            <span>
+                              R$ {product.price?.toFixed(2).replace(".", ",")}
+                            </span>
                           </span>
                         </div>
                       </div>
