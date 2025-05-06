@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { CircleDollarSign } from "lucide-react";
 import { Product } from "@/types/restaurant";
+import { formatCurrency } from "@/lib/utils";
 
 interface RestaurantProductCardProps {
   product: Product;
@@ -29,7 +30,7 @@ export function RestaurantProductCard({
         )}
         {product.hasPromotions && product.basePrice && (
           <span className="text-xs text-light-text font-bold mt-0.5 line-through">
-            R$ {product.basePrice.toFixed(2).replace(".", ",")}
+            {formatCurrency(product.basePrice)}
           </span>
         )}
         <span
@@ -42,7 +43,7 @@ export function RestaurantProductCard({
           {product.hasPromotions && (
             <CircleDollarSign className="text-success text-sm" size={14} />
           )}
-          <span>R$ {product.price?.toFixed(2).replace(".", ",")}</span>
+          <span>{formatCurrency(product.price)}</span>
         </span>
       </div>
     </Link>

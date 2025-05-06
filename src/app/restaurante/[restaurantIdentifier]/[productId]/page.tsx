@@ -1,5 +1,3 @@
-// app/restaurante/[restaurantIdentifier]/produto/[productId]/page.tsx
-
 import { restaurants } from "@/data/restaurants";
 import { notFound } from "next/navigation";
 import Image from "next/image";
