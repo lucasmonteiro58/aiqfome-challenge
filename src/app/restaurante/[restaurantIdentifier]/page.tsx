@@ -33,7 +33,7 @@ export default async function RestaurantPage({ params }: RestaurantPageProps) {
   return (
     <div className="min-h-screen flex flex-col mt-2">
       <div className="flex-grow">
-        <div className="p-4 space-y-3">
+        <div className="py-4 space-y-3">
           <RestaurantHeader name={restaurant.name} logo={restaurant.logo} />
 
           <RestaurantMetaInfo

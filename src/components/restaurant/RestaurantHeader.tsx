@@ -9,7 +9,7 @@ export function RestaurantHeader({
   logo: string;
 }) {
   return (
-    <div className="flex flex-col  justify-between gap-3">
+    <div className="flex flex-col  justify-between gap-3 px-4">
       <div className="flex items-center gap-3">
         <Image
           src={logo}

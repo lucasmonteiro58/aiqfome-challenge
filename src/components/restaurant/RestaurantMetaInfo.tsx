@@ -1,5 +1,5 @@
 import { formatCurrency } from "@/lib/utils";
-import { Bike, Star } from "lucide-react";
+import { Bike, Star, ChevronRight } from "lucide-react";
 
 interface RestaurantMetaInfoProps {
   deliveryFee: number;
@@ -19,14 +19,15 @@ export function RestaurantMetaInfo({
   minOrder,
 }: RestaurantMetaInfoProps) {
   return (
-    <div className="text-sm space-y-1 mt-1">
+    <div className="text-sm space-y-1 mt-1 px-4">
       <p className="flex gap-2 items-center">
         <Bike className="text-purple-brand" size={20} strokeWidth={2} />
         <span className="text-purple-brand font-bold">
           {formatCurrency(deliveryFee)}
         </span>
+        <ChevronRight className="text-purple-brand" size={14} />
         <span className="text-light-text font-bold text-sm">
-          • hoje, {deliveryEstimate} • {distanceKm} km
+          hoje, {deliveryEstimate} • {distanceKm}km
         </span>
       </p>
 
@@ -41,9 +42,9 @@ export function RestaurantMetaInfo({
           fill="currentColor"
           strokeWidth={0}
         />
-        <span className="text-light-text font-bold text-sm">
-          {rating} de 5 •
-        </span>
+        <span className="text-light-text font-bold text-sm">{rating} de 5</span>
+        <ChevronRight className="text-light-text" size={14} />
+        <span className="text-gray-icons font-bold text-sm">•</span>
         <span className="text-success font-bold">fecha às 20:00</span>
       </p>
 

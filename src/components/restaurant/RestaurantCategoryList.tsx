@@ -21,7 +21,11 @@ export function RestaurantCategoryList({
   return (
     <Accordion type="multiple" className="mt-4">
       {categories.map((category) => (
-        <AccordionItem key={category.name} value={category.name}>
+        <AccordionItem
+          key={category.name}
+          value={category.name}
+          className="px-4"
+        >
           <AccordionTrigger>
             <div>
               <h1 className="font-bold text-dark-text text-base flex items-center">
