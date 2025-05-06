@@ -1,33 +1,46 @@
-"use client"
+"use client";
 
-import Image from "next/image"
-import { useRouter } from "next/navigation"
-import { Card, CardContent } from "@/components/ui/card"
-import { Restaurant } from "@/types/restaurant"
-import { formatCurrency } from "@/lib/utils"
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { Restaurant } from "@/types/restaurant";
+import { formatCurrency } from "@/lib/utils";
+import { Bike, Star } from "lucide-react";
 
 export function RestaurantCard(props: Restaurant) {
-  const router = useRouter()
+  const router = useRouter();
 
   return (
-    <Card
+    <div
       onClick={() => router.push(`/${props.id}`)}
-      className="flex items-center gap-4 px-4 py-2 shadow-sm hover:bg-muted/50 transition cursor-pointer"
+      className="flex items-center gap-3  bg-container-97 hover:bg-container-95 transition cursor-pointer rounded-xl"
     >
       <Image
         src={props.logo}
         alt={props.name}
-        width={50}
-        height={50}
-        className="rounded-md"
+        width={72}
+        height={72}
+        className="rounded-l-md object-cover"
       />
-      <CardContent className="p-0 flex flex-col">
-        <span className="font-medium">{props.name}</span>
-        <div className="text-sm text-muted-foreground flex gap-2">
-          <span>{formatCurrency(props.deliveryFee)}</span>
-          <span>⭐ {props.rating}</span>
+
+      <div className="flex flex-col justify-center">
+        <span className="font-medium text-sm text-text-medium">
+          {props.name}
+        </span>
+        <div className="flex items-center gap-2 text-sm mt-0.5">
+          <span className="flex items-center gap-1 text-teal-text font-bold">
+            <Bike size={18} strokeWidth={2} />
+            {props.deliveryFee === 0
+              ? "grátis"
+              : formatCurrency(props.deliveryFee)}
+          </span>
+          <span className="flex items-center gap-1 text-warning">
+            <Star size={20} fill="currentColor" strokeWidth={0} />
+            <span className="text-light-text font-bold">
+              {props.rating.toFixed(1)}
+            </span>
+          </span>
         </div>
-      </CardContent>
-    </Card>
-  )
+      </div>
+    </div>
+  );
 }
