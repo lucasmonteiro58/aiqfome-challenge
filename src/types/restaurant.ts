@@ -29,6 +29,8 @@ export interface Product {
   image: string;
   basePrice: number;
   price: number;
+  hasPromotions?: boolean;
+  multiplePrices?: boolean;
   customizations?: Customization[];
 }
 

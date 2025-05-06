@@ -3,7 +3,14 @@ import restaurants from "@/data/restaurants.json";
 import { Restaurant } from "@/types/restaurant";
 import Image from "next/image";
 import { Footer } from "@/components/Footer";
-import { Share2, Heart, ChevronRight, Bike, Star } from "lucide-react";
+import {
+  Share2,
+  Heart,
+  ChevronRight,
+  Bike,
+  Star,
+  CircleDollarSign,
+} from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -94,15 +101,72 @@ export default function RestaurantPage({ params }: Props) {
             </div>
           </div>
 
-          {/* Categorias */}
           <Accordion type="multiple" className="mt-4">
             {restaurant.categories?.map((category) => (
               <AccordionItem key={category.name} value={category.name}>
-                <AccordionTrigger>{category.name}</AccordionTrigger>
+                <AccordionTrigger>
+                  <div>
+                    <h1 className="font-bold text-dark-text text-base flex items-center">
+                      <span>{category.name}</span>
+                      {category.hasPromotions && (
+                        <CircleDollarSign
+                          className="text-success text-sm font-bold ml-2"
+                          size={24}
+                        />
+                      )}
+                    </h1>
+                    {category.description && (
+                      <div className="text-light-text text-xs mt-1">
+                        {category.description}
+                      </div>
+                    )}
+                  </div>
+                </AccordionTrigger>
                 <AccordionContent>
-                  <p className="text-sm text-muted-foreground">
-                    {category.description}
-                  </p>
+                  <div className="flex flex-col gap-4 mt-2">
+                    {category.products.map((product) => (
+                      <div
+                        key={product.name}
+                        className="flex bg-white rounded-lg pl-4 items-center gap-6 justify-between"
+                      >
+                        <div className="flex flex-col flex-1">
+                          <h1 className="font-semibold text-dark-text text-sm">
+                            {product.name}
+                          </h1>
+                          <p className="text-light-text text-xs mt-1">
+                            {product.description}
+                          </p>
+                        </div>
+                        <div className="w-24 flex items-end flex-col">
+                          {product.multiplePrices && (
+                            <span className="text-xs text-light-text font-bold">
+                              a partir de
+                            </span>
+                          )}
+                          {product.hasPromotions && (
+                            <span className="text-xs text-light-text font-bold mt-0.5 line-through">
+                              R$ {product.basePrice?.toFixed(2)}
+                            </span>
+                          )}
+                          <span
+                            className={`flex font-bold text-sm gap-1 items-center ${
+                              product.hasPromotions
+                                ? "mt-0.5 text-success"
+                                : "mt-1 text-purple-brand"
+                            }`}
+                          >
+                            {product.hasPromotions && (
+                              <CircleDollarSign
+                                className="text-success text-sm"
+                                size={14}
+                              />
+                            )}
+                            <span>R$ {product.price?.toFixed(2)}</span>
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </AccordionContent>
               </AccordionItem>
             ))}

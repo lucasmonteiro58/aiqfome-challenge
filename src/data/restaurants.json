@@ -16,6 +16,8 @@
       {
         "id": "ceviches",
         "name": "Ceviches",
+        "description": "um prato super refrescante de peixe fatiado e marinado com limão",
+        "hasPromotions": true,
         "products": [
           {
             "id": "ceviche-salmao",
@@ -23,6 +25,9 @@
             "description": "salmão temperado com limão, cebola e pimenta",
             "image": "/images/ceviche.png",
             "basePrice": 19.9,
+            "price": 10.9,
+            "hasPromotions": true,
+            "multiplePrices": true,
             "customizations": [
               {
                 "type": "single",
@@ -173,6 +178,9 @@
             "description": "Pão com gergelim, carne grelhada, alface, tomate, maionese e ketchup",
             "image": "/images/whopper.png",
             "basePrice": 19.9,
+            "price": 10.9,
+            "hasPromotions": true,
+            "multiplePrices": true,
             "customizations": [
               {
                 "type": "single",
@@ -262,7 +270,10 @@
             "name": "Frango Teriyaki",
             "description": "Frango ao molho teriyaki com vegetais",
             "image": "/images/frango-teriyaki.png",
-            "basePrice": 21.9,
+            "basePrice": 19.9,
+            "price": 10.9,
+            "hasPromotions": true,
+            "multiplePrices": true,
             "customizations": [
               {
                 "type": "single",
@@ -348,13 +359,17 @@
       {
         "id": "lanche",
         "name": "Lanches",
+        "hasPromotions": true,
         "products": [
           {
             "id": "big-mac",
             "name": "Big Mac",
             "description": "Dois hambúrgueres, alface, queijo, molho especial, cebola e picles no pão com gergelim.",
             "image": "/images/bigmac.png",
-            "basePrice": 21.5,
+            "basePrice": 19.9,
+            "price": 10.9,
+            "hasPromotions": true,
+            "multiplePrices": false,
             "customizations": [
               {
                 "type": "single",
@@ -381,7 +396,10 @@
             "name": "Cheeseburger",
             "description": "Pão, carne, queijo e ketchup.",
             "image": "/images/cheeseburger.png",
-            "basePrice": 9.9,
+            "basePrice": 19.9,
+            "price": 19.9,
+            "hasPromotions": false,
+            "multiplePrices": true,
             "customizations": []
           }
         ]
@@ -389,13 +407,18 @@
       {
         "id": "acompanhamentos",
         "name": "Acompanhamentos",
+        "hasPromotions": false,
+        "description": "Acompanhamentos para o seu lanche.",
         "products": [
           {
             "id": "batata-media",
             "name": "Batata Média",
             "description": "Porção individual de batata frita crocante.",
             "image": "/images/french-fries.png",
-            "basePrice": 8,
+            "basePrice": 19.9,
+            "price": 10.9,
+            "hasPromotions": true,
+            "multiplePrices": false,
             "customizations": []
           }
         ]
@@ -409,7 +432,10 @@
             "name": "McFlurry Ovomaltine",
             "description": "Sorvete com pedaços crocantes de Ovomaltine.",
             "image": "/images/mcflurry.png",
-            "basePrice": 12,
+            "basePrice": 19.9,
+            "price": 10.9,
+            "hasPromotions": true,
+            "multiplePrices": false,
             "customizations": [
               {
                 "type": "multiple",
