@@ -32,6 +32,7 @@ export interface Product {
   hasPromotions?: boolean;
   multiplePrices?: boolean;
   customizations?: Customization[];
+  substances?: Substance[];
 }
 
 export interface Customization {
@@ -49,3 +50,5 @@ export interface CustomizationOption {
   price: number;
   default?: boolean;
 }
+
+export type Substance = "alcohol" | "candy" | "gluten-free" | "spicy" | "vegan";

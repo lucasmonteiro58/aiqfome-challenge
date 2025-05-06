@@ -23,11 +23,14 @@
             "id": "ceviche-salmao",
             "name": "Ceviche de salmão",
             "description": "salmão temperado com limão, cebola e pimenta",
-            "image": "/images/ceviche.png",
+            "image": "/images/products/ceviche-salmao.png",
             "basePrice": 19.9,
             "price": 10.9,
             "hasPromotions": true,
             "multiplePrices": true,
+            "substances": [
+              "gluten-free"
+            ],
             "customizations": [
               {
                 "type": "single",
@@ -38,6 +41,8 @@
                     "id": "medio",
                     "label": "médio",
                     "price": 19.9,
+                    "basePrice": 23.9,
+                    "hasPromotions": true,
                     "default": true
                   },
                   {
@@ -149,6 +154,224 @@
                 ]
               }
             ]
+          },
+          {
+            "id": "ceviche-vegano",
+            "name": "Ceviche vegano",
+            "description": "Pepino, manga, cenoura e cebola roxa no limão com pimenta dedo-de-moça",
+            "image": "/images/ceviche-vegano.png",
+            "basePrice": 18.0,
+            "price": 18.0,
+            "hasPromotions": false,
+            "multiplePrices": false,
+            "substances": [
+              "vegan"
+            ],
+            "customizations": [
+              {
+                "type": "single",
+                "required": false,
+                "title": "Adicionar proteína?",
+                "options": [
+                  {
+                    "id": "tofu",
+                    "label": "Tofu grelhado",
+                    "price": 4
+                  },
+                  {
+                    "id": "nenhum",
+                    "label": "Não adicionar",
+                    "price": 0,
+                    "default": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "niguiris",
+        "name": "Niguiris",
+        "description": "fatias de peixe sobre bolinhos de arroz",
+        "hasPromotions": false,
+        "products": [
+          {
+            "id": "niguiri-salmao",
+            "name": "Niguiri de Salmão",
+            "description": "Fatia de salmão fresco sobre bolinho de arroz temperado",
+            "image": "/images/niguiri-salmao.png",
+            "basePrice": 9.9,
+            "price": 9.9,
+            "hasPromotions": false,
+            "multiplePrices": false,
+            "customizations": []
+          },
+          {
+            "id": "niguiri-atum",
+            "name": "Niguiri de Atum",
+            "description": "Fatia de atum fresco sobre bolinho de arroz",
+            "image": "/images/niguiri-atum.png",
+            "basePrice": 10.9,
+            "price": 10.9,
+            "hasPromotions": false,
+            "multiplePrices": false,
+            "customizations": []
+          },
+          {
+            "id": "niguiri-ovo",
+            "name": "Niguiri de Ovo",
+            "description": "Ovo japonês levemente adocicado sobre arroz tradicional",
+            "image": "/images/niguiri-ovo.png",
+            "basePrice": 7.0,
+            "price": 7.0,
+            "hasPromotions": false,
+            "multiplePrices": false,
+            "customizations": []
+          }
+        ]
+      },
+      {
+        "id": "temakis",
+        "name": "Temakis",
+        "description": "sushi em forma de cone com salmão e cream cheese",
+        "hasPromotions": true,
+        "products": [
+          {
+            "id": "temaki-california",
+            "name": "Califórnia",
+            "description": "Kani, pepino e maçã ou manga",
+            "price": 13.99,
+            "basePrice": 17.0,
+            "hasPromotions": true,
+            "multiplePrices": false
+          },
+          {
+            "id": "temaki-filadelfia",
+            "name": "Filadélfia",
+            "description": "Arroz, salmão fresco, cream cheese e cebolinha",
+            "price": 13.99,
+            "hasPromotions": false,
+            "multiplePrices": false
+          },
+          {
+            "id": "temaki-mix",
+            "name": "Mix",
+            "description": "Escolha 3 ingredientes: shimeji, alface americana, rúcula, pepino, tomate seco, cream cheese, maionese...",
+            "price": 13.99,
+            "hasPromotions": false,
+            "multiplePrices": true
+          },
+          {
+            "id": "temaki-salmao-picante",
+            "name": "Salmão picante",
+            "description": "Alga, arroz, salmão fresco, pimenta e cebolinha",
+            "price": 13.99,
+            "hasPromotions": false,
+            "multiplePrices": true
+          }
+        ]
+      },
+      {
+        "id": "bebidas",
+        "name": "Bebidas",
+        "description": "Bebidas para acompanhar seu prato",
+        "products": [
+          {
+            "id": "agua-sem-gas",
+            "name": "Água Sem Gás",
+            "description": "Garrafa 500ml",
+            "image": "/images/agua.png",
+            "basePrice": 3,
+            "price": 3,
+            "hasPromotions": false,
+            "multiplePrices": false,
+            "customizations": []
+          },
+          {
+            "id": "agua-com-gas",
+            "name": "Água Com Gás",
+            "description": "Garrafa 500ml",
+            "image": "/images/agua-gas.png",
+            "basePrice": 3.5,
+            "price": 3.5,
+            "hasPromotions": false,
+            "multiplePrices": false,
+            "customizations": []
+          },
+          {
+            "id": "coca-lata",
+            "name": "Coca-Cola Lata",
+            "description": "350ml",
+            "image": "/images/coca.png",
+            "basePrice": 6,
+            "price": 6,
+            "hasPromotions": false,
+            "multiplePrices": false,
+            "customizations": []
+          },
+          {
+            "id": "guarana-lata",
+            "name": "Guaraná Antarctica Lata",
+            "description": "350ml",
+            "image": "/images/guarana.png",
+            "basePrice": 6,
+            "price": 6,
+            "hasPromotions": false,
+            "multiplePrices": false,
+            "customizations": []
+          },
+          {
+            "id": "suco-laranja",
+            "name": "Suco Prats Laranja",
+            "description": "Suco natural sem conservantes",
+            "image": "/images/suco.png",
+            "basePrice": 7,
+            "price": 7,
+            "hasPromotions": false,
+            "multiplePrices": false,
+            "customizations": []
+          }
+        ]
+      },
+      {
+        "id": "sobremesas",
+        "name": "Sobremesas",
+        "description": "Doces japoneses e sobremesas geladas",
+        "hasPromotions": true,
+        "products": [
+          {
+            "id": "biscoito-da-sorte",
+            "name": "Biscoito da Sorte",
+            "description": "Biscoito crocante com mensagem personalizada",
+            "image": "/images/biscoito.png",
+            "basePrice": 2,
+            "price": 2,
+            "hasPromotions": false,
+            "multiplePrices": false,
+            "customizations": []
+          },
+          {
+            "id": "rolinho-primavera-doce",
+            "name": "Rolinho Primavera Doce",
+            "description": "Massa crocante recheada com banana e canela",
+            "image": "/images/rolinho-doce.png",
+            "basePrice": 8,
+            "price": 8,
+            "hasPromotions": false,
+            "multiplePrices": false,
+            "customizations": []
+          },
+          {
+            "id": "guioza-chocolate",
+            "name": "Guioza de Chocolate",
+            "description": "Guioza recheado com creme de chocolate, servido quente",
+            "image": "/images/guioza-choco.png",
+            "basePrice": 9,
+            "price": 7,
+            "hasPromotions": true,
+            "multiplePrices": false,
+            "customizations": []
           }
         ]
       }
