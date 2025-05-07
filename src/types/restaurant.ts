@@ -5,6 +5,7 @@ export interface Restaurant {
   logo: string;
   deliveryFee: number;
   deliveryEstimate: string;
+  deliveryType: deliveryType;
   distanceKm: number;
   rating: number;
   openingTime: string;
@@ -13,6 +14,13 @@ export interface Restaurant {
   minOrder: number;
   categories: Category[];
 }
+
+export type deliveryType =
+  | "aiqentrega-purple"
+  | "aiqentrega-teal"
+  | "in-store-bag"
+  | "motorcycle-block"
+  | "motorcycle";
 
 export interface Category {
   id: string;

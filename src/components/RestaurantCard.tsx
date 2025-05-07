@@ -3,8 +3,8 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Restaurant } from "@/types/restaurant";
-import { formatCurrency } from "@/lib/utils";
-import { Bike, Star } from "lucide-react";
+import { DeliveryType } from "./DeliveryType";
+import { Star } from "lucide-react";
 
 export function RestaurantCard(props: Restaurant) {
   const router = useRouter();
@@ -27,12 +27,10 @@ export function RestaurantCard(props: Restaurant) {
           {props.name}
         </span>
         <div className="flex items-center gap-2 text-sm mt-0.5">
-          <span className="flex items-center gap-1 text-teal-text font-bold">
-            <Bike size={18} strokeWidth={2} />
-            {props.deliveryFee === 0
-              ? "grátis"
-              : formatCurrency(props.deliveryFee)}
-          </span>
+          <DeliveryType
+            type={props.deliveryType}
+            deliveryFee={props.deliveryFee}
+          />
           <span className="flex items-center gap-1 text-warning">
             <Star size={20} fill="currentColor" strokeWidth={0} />
             <span className="text-light-text font-bold">

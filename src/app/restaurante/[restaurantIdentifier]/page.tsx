@@ -47,6 +47,7 @@ export default async function RestaurantPage({ params }: RestaurantPageProps) {
             freeDeliveryThreshold={restaurant.freeDeliveryThreshold}
             rating={restaurant.rating}
             minOrder={restaurant.minOrder}
+            deliveryType={restaurant.deliveryType}
           />
 
           <RestaurantCategoryList

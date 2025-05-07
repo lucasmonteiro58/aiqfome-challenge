@@ -1,5 +1,7 @@
 import { formatCurrency } from "@/lib/utils";
-import { Bike, Star, ChevronRight } from "lucide-react";
+import { Star, ChevronRight } from "lucide-react";
+import { DeliveryType } from "../DeliveryType";
+import { deliveryType } from "@/types/restaurant";
 
 interface RestaurantMetaInfoProps {
   deliveryFee: number;
@@ -8,6 +10,7 @@ interface RestaurantMetaInfoProps {
   freeDeliveryThreshold: number;
   rating: number;
   minOrder: number;
+  deliveryType: deliveryType;
 }
 
 export function RestaurantMetaInfo({
@@ -17,14 +20,12 @@ export function RestaurantMetaInfo({
   freeDeliveryThreshold,
   rating,
   minOrder,
+  deliveryType,
 }: RestaurantMetaInfoProps) {
   return (
     <div className="text-sm space-y-1 mt-1 px-4">
       <p className="flex gap-2 items-center">
-        <Bike className="text-purple-brand" size={20} strokeWidth={2} />
-        <span className="text-purple-brand font-bold">
-          {formatCurrency(deliveryFee)}
-        </span>
+        <DeliveryType type={deliveryType} deliveryFee={deliveryFee} />
         <ChevronRight className="text-purple-brand" size={14} />
         <span className="text-light-text font-bold text-sm">
           hoje, {deliveryEstimate} • {distanceKm}km
