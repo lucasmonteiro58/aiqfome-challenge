@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Product, Restaurant } from "@/types/restaurant";
 import { Button } from "../ui/button";
 import { QuantitySelector } from "../QuantitySelector";
@@ -15,52 +15,31 @@ export function ProductQuantitySelector({
   product,
   restaurant,
 }: ProductQuantitySelectorProps) {
+  const { items, addToCart, setEditingIndex } = useCartStore();
   const [quantity, setQuantity] = useState(0);
-  const { addToCart } = useCartStore();
+
+  useEffect(() => {
+    const index = items.findIndex((item) => item.product.id === product.id);
+    if (index !== -1) {
+      const item = items[index];
+      setQuantity(item.quantity);
+      setEditingIndex(index);
+    } else {
+      setQuantity(0);
+      setEditingIndex(null);
+    }
+  }, [items, product.id, setEditingIndex]);
 
   const total = (quantity * product.price).toFixed(2).replace(".", ",");
 
-  function handleAdd() {
-    setQuantity(1);
-    addToCart(restaurant, {
-      product,
-      quantity: 1,
-      selectedCustomizations: {},
-      observation: "",
-    });
-  }
-
-  function handleIncrease() {
-    const newQuantity = quantity + 1;
+  function updateCart(newQuantity: number) {
     setQuantity(newQuantity);
-
     addToCart(restaurant, {
       product,
       quantity: newQuantity,
       selectedCustomizations: {},
       observation: "",
     });
-  }
-
-  function handleDecrease() {
-    const newQuantity = quantity > 1 ? quantity - 1 : 0;
-    setQuantity(newQuantity);
-
-    if (newQuantity > 0) {
-      addToCart(restaurant, {
-        product,
-        quantity: newQuantity,
-        selectedCustomizations: {},
-        observation: "",
-      });
-    } else {
-      // aqui podemos implementar depois um remove do carrinho
-    }
-  }
-
-  function handleRemove() {
-    setQuantity(0);
-    // aqui podemos implementar depois um remove do carrinho
   }
 
   return (
@@ -75,7 +54,7 @@ export function ProductQuantitySelector({
 
         {quantity === 0 ? (
           <Button
-            onClick={handleAdd}
+            onClick={() => updateCart(1)}
             size="lg"
             className="bg-light-text hover:bg-light-text/85 text-white px-4 py-2 rounded-md text-sm font-bold"
           >
@@ -84,9 +63,9 @@ export function ProductQuantitySelector({
         ) : (
           <QuantitySelector
             initialValue={quantity}
-            handleAdd={handleIncrease}
-            handleDecrease={handleDecrease}
-            handleRemove={handleRemove}
+            handleAdd={() => updateCart(quantity + 1)}
+            handleDecrease={() => updateCart(quantity > 1 ? quantity - 1 : 0)}
+            handleRemove={() => updateCart(0)}
             hasTrash
           />
         )}
