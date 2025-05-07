@@ -5,6 +5,7 @@ import { ProductQuantitySelector } from "@/components/product/ProductQuantitySel
 import { ProductCustomizationTitle } from "@/components/product/ProductCustomizationTitle";
 import { SingleCustomization } from "@/components/product/SingleCustomization";
 import { MultipleCustomization } from "@/components/product/MultipleCustomization";
+import { QuantityCustomization } from "@/components/product/QuantityCustomization";
 
 export default async function ProductPage({
   params,
@@ -40,24 +41,12 @@ export default async function ProductPage({
             {customization.type === "multiple" && (
               <MultipleCustomization customization={customization} />
             )}
-            {customization.type === "quantity" &&
-              customization.options.map((opt) => (
-                <div
-                  key={opt.id}
-                  className="flex justify-between items-center border rounded px-3 py-1 my-1"
-                >
-                  <span>{opt.label}</span>
-                  <span className="text-purple-brand font-bold">
-                    +R$ {opt.price.toFixed(2).replace(".", ",")}
-                  </span>
-
-                  <div className="flex items-center gap-2">
-                    <button>-</button>
-                    <span>0</span>
-                    <button>+</button>
-                  </div>
-                </div>
-              ))}
+            {customization.type === "quantity" && (
+              <QuantityCustomization
+                customization={customization}
+                product={product}
+              />
+            )}
           </div>
         ))}
       </div>

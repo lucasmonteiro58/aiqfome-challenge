@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Trash2, Plus, Minus } from "lucide-react";
 import { Product } from "@/types/restaurant";
 import { Button } from "../ui/button";
+import { QuantitySelector } from "../QuantitySelector";
 
 interface ProductQuantitySelectorProps {
   product: Product;
@@ -47,28 +47,13 @@ export function ProductQuantitySelector({
             adicionar
           </Button>
         ) : (
-          <div className="flex items-center gap-4 justify-center">
-            <button onClick={quantity > 1 ? handleDecrease : handleRemove}>
-              {quantity > 1 ? (
-                <span className="border border-teal-brand rounded-full w-8 h-8 text-teal-brand flex items-center justify-center text-sm">
-                  <Minus className="text-teal-brand" size={20} />
-                </span>
-              ) : (
-                <Trash2
-                  className="text-teal-brand pb-0.5"
-                  size={32}
-                  strokeWidth={1}
-                />
-              )}
-            </button>
-            <span className="text-dark-text font-bold text-sm">{quantity}</span>
-            <button
-              onClick={handleAdd}
-              className="border border-teal-brand rounded-full w-8 h-8 text-teal-brand flex items-center justify-center text-sm"
-            >
-              <Plus size={20} />
-            </button>
-          </div>
+          <QuantitySelector
+            initialValue={quantity}
+            handleAdd={handleAdd}
+            handleDecrease={handleDecrease}
+            handleRemove={handleRemove}
+            hasTrash
+          />
         )}
       </div>
     </div>
