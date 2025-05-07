@@ -4,6 +4,7 @@ import { ProductHeader } from "@/components/product/ProductHeader";
 import { ProductQuantitySelector } from "@/components/product/ProductQuantitySelector";
 import { ProductCustomizationTitle } from "@/components/product/ProductCustomizationTitle";
 import { SingleCustomization } from "@/components/product/SingleCustomization";
+import { MultipleCustomization } from "@/components/product/MultipleCustomization";
 
 export default async function ProductPage({
   params,
@@ -36,24 +37,9 @@ export default async function ProductPage({
             {customization.type === "single" && (
               <SingleCustomization customization={customization} />
             )}
-            {customization.type === "multiple" &&
-              customization.options.map((opt) => (
-                <label key={opt.id} className="flex items-center gap-3 py-1">
-                  <input
-                    type="checkbox"
-                    name={customization.title}
-                    value={opt.id}
-                  />
-                  <div className="text-sm">
-                    {opt.label}
-                    {opt.price > 0 && (
-                      <span className="text-purple-brand font-medium ml-1">
-                        +R$ {opt.price.toFixed(2).replace(".", ",")}
-                      </span>
-                    )}
-                  </div>
-                </label>
-              ))}
+            {customization.type === "multiple" && (
+              <MultipleCustomization customization={customization} />
+            )}
             {customization.type === "quantity" &&
               customization.options.map((opt) => (
                 <div

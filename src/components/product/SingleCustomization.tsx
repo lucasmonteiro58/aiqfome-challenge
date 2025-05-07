@@ -12,7 +12,7 @@ interface CustomizationProps {
 export function SingleCustomization({ customization }: CustomizationProps) {
   return (
     <div className="pl-4 mt-4 pr-8 border-b-4 border-container-95 pb-4">
-      <RadioGroup defaultValue="option-one">
+      <RadioGroup defaultValue={customization.options?.[0]?.id}>
         {customization.options.map((opt) => (
           <div className="flex items-center space-x-2" key={opt.id}>
             <RadioGroupItem value={opt.id} id={opt.id} />

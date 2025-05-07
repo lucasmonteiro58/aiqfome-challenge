@@ -56,6 +56,7 @@ export const restaurants: Restaurant[] = [
               },
               {
                 type: "multiple",
+                subtitle: "escolha de 1 a 2",
                 required: true,
                 min: 1,
                 max: 2,
@@ -118,6 +119,7 @@ export const restaurants: Restaurant[] = [
               {
                 type: "single",
                 required: false,
+                subtitle: "escolha até 1",
                 title: "precisa de talher?",
                 options: [
                   {
@@ -137,6 +139,7 @@ export const restaurants: Restaurant[] = [
                 required: false,
                 max: 2,
                 title: "mais alguma coisa?",
+                subtitle: "escolha até 2",
                 options: [
                   {
                     id: "biscoito",
