@@ -18,7 +18,7 @@ export function RestaurantProductCard({
   return (
     <Link
       href={`/restaurante/${restaurantIdentifier}/${product.id}`}
-      className="flex bg-white rounded-lg pl-2 items-center gap-6 justify-between hover:bg-gray-50 transition-colors"
+      className="flex rounded-lg pl-2 py-2 items-center gap-6 justify-between  transition-colors hover:bg-container-97/60"
     >
       <div className="flex flex-col flex-1">
         <RestaurantTitle product={product} />

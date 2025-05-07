@@ -45,7 +45,7 @@ export function RestaurantCategoryList({
             </div>
           </AccordionTrigger>
           <AccordionContent>
-            <div className="flex flex-col gap-4 mt-2">
+            <div className="flex flex-col gap-2 mt-2">
               {category.products.map((product) => (
                 <RestaurantProductCard
                   key={product.id}

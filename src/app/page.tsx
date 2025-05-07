@@ -14,13 +14,13 @@ export default function Home() {
       <div className="bg-white shadow-sm">
         <SearchInput />
       </div>
-      <div className="container mx-auto mt-2 px-4">
+      <div className="container mx-auto sm:mt-2 mt-0 sm:px-4 px-0">
         <Image
           src="/images/banner.png"
           alt="Banner"
           width={1600}
           height={600}
-          className="w-full h-auto rounded-lg"
+          className="w-full h-auto sm:rounded-lg rounded-none"
         />
       </div>
       <main className="flex-grow container mx-auto px-4 py-6">
