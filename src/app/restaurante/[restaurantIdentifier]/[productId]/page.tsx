@@ -7,6 +7,8 @@ import { SingleCustomization } from "@/components/product/SingleCustomization";
 import { MultipleCustomization } from "@/components/product/MultipleCustomization";
 import { QuantityCustomization } from "@/components/product/QuantityCustomization";
 import { ProductObservation } from "@/components/product/ProductObservation";
+import { Footer } from "@/components/Footer";
+import { TicketButton } from "@/components/TicketButton";
 
 export default async function ProductPage({
   params,
@@ -29,7 +31,7 @@ export default async function ProductPage({
   if (!product) return notFound();
 
   return (
-    <div className="pb-36">
+    <div>
       <ProductHeader product={product} />
       <ProductQuantitySelector product={product} restaurant={restaurant} />
 
@@ -50,15 +52,12 @@ export default async function ProductPage({
         ))}
       </div>
 
-      <div className="px-4 mt-6">
+      <div className="px-4 mt-6 mb-12">
         <ProductObservation />
       </div>
 
-      <div className="fixed bottom-0 left-0 right-0 p-4 bg-white border-t">
-        <button className="w-full bg-purple-brand text-white py-3 rounded-lg font-bold">
-          ver ticket
-        </button>
-      </div>
+      <Footer />
+      <TicketButton />
     </div>
   );
 }

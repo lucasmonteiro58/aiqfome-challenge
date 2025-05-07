@@ -5,6 +5,7 @@ import { CartHeader } from "@/components/cart/CartHeader";
 import { CartItemTitle } from "@/components/cart/CartItemTitle";
 import { CartEdit } from "@/components/cart/CartEdit";
 import { CartItemList } from "@/components/cart/CartItemList";
+import { CartEmpty } from "./CartEmpty";
 
 export default function CartContent() {
   const { items, restaurant } = useCartStore();
@@ -21,6 +22,10 @@ export default function CartContent() {
 
       return total + base + extras;
     }, 0);
+
+  if (items.length === 0) {
+    return <CartEmpty />;
+  }
 
   return (
     <div className="pb-32">
