@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { ProductHeader } from "@/components/product/ProductHeader";
 import { ProductQuantitySelector } from "@/components/product/ProductQuantitySelector";
 import { ProductCustomizationTitle } from "@/components/product/ProductCustomizationTitle";
+import { SingleCustomization } from "@/components/product/SingleCustomization";
 
 export default async function ProductPage({
   params,
@@ -32,24 +33,9 @@ export default async function ProductPage({
         {product.customizations?.map((customization, index) => (
           <div key={index}>
             <ProductCustomizationTitle customization={customization} />
-            {customization.type === "single" &&
-              customization.options.map((opt) => (
-                <label key={opt.id} className="flex items-center gap-3 py-1">
-                  <input
-                    type="radio"
-                    name={customization.title}
-                    value={opt.id}
-                  />
-                  <div className="text-sm">
-                    {opt.label}
-                    {opt.price > 0 && (
-                      <span className="text-purple-brand font-medium ml-1">
-                        +R$ {opt.price.toFixed(2).replace(".", ",")}
-                      </span>
-                    )}
-                  </div>
-                </label>
-              ))}
+            {customization.type === "single" && (
+              <SingleCustomization customization={customization} />
+            )}
             {customization.type === "multiple" &&
               customization.options.map((opt) => (
                 <label key={opt.id} className="flex items-center gap-3 py-1">
