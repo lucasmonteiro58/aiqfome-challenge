@@ -10,7 +10,7 @@ export function ProductHeader({ product }: { product: Product }) {
         alt={product.name}
         width={400}
         height={300}
-        className="w-full h-auto object-cover"
+        className="w-full h-64 object-cover"
       />
       <div className="px-4">
         <h1 className="font-bold text-xl mt-4 text-medium-text">
