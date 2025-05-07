@@ -1,27 +1,57 @@
 "use client";
 
-import { Product } from "@/types/restaurant";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { CartItem } from "@/types/cart";
+import { getCartItemTotal } from "@/lib/utils";
 
 interface CartState {
-  items: Product[];
-  addItem: (item: Product) => void;
-  removeItem: (item: Product) => void;
+  items: CartItem[];
+  addItem: (item: CartItem) => void;
+  removeItem: (productId: string) => void;
+  clearCart: () => void;
+  getCartTotal: () => number;
+  getItemTotal: (item: CartItem) => number;
 }
 
 export const useCartStore = create<CartState>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       items: [],
-      addItem: (item: Product) =>
+
+      addItem: (item) => {
+        const { items } = get();
+
+        if (items.length > 0 && items[0].restaurantId !== item.restaurantId) {
+          set({ items: [item] });
+        } else {
+          const existing = items.find((i) => i.productId === item.productId);
+
+          if (existing) {
+            set({
+              items: items.map((i) =>
+                i.productId === item.productId ? item : i
+              ),
+            });
+          } else {
+            set({ items: [...items, item] });
+          }
+        }
+      },
+
+      removeItem: (productId) =>
         set((state) => ({
-          items: [...state.items, item],
+          items: state.items.filter((i) => i.productId !== productId),
         })),
-      removeItem: (item: Product) =>
-        set((state) => ({
-          items: state.items.filter((i) => i.id !== item.id),
-        })),
+
+      clearCart: () => set({ items: [] }),
+
+      getItemTotal: (item) => getCartItemTotal(item),
+
+      getCartTotal: () => {
+        const { items, getItemTotal } = get();
+        return items.reduce((acc, item) => acc + getItemTotal(item), 0);
+      },
     }),
     {
       name: "cart-storage",
