@@ -1,17 +1,9 @@
+import restaurantsJson from "../../../public/data/restaurants.json";
 import { RestaurantCard } from "@/components/RestaurantCard";
 import { Restaurant } from "@/types/restaurant";
 
 export default async function RestaurantList() {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:3000";
-  const res = await fetch(`${baseUrl}/data/restaurants.json`, {
-    cache: "force-cache",
-  });
-
-  if (!res.ok) {
-    throw new Error("Erro ao carregar restaurantes");
-  }
-
-  const restaurants = (await res.json()) as Restaurant[];
+  const restaurants = restaurantsJson as Restaurant[];
   const openedRestaurants = restaurants.filter((r) => r.isOpen);
   const closedRestaurants = restaurants.filter((r) => !r.isOpen);
 
