@@ -44,28 +44,26 @@ export function QuantityCustomization({ customization }: CustomizationProps) {
 
     setQuantities(newQuantities);
 
-    setTimeout(() => {
-      if (editingIndex === null) return;
+    if (editingIndex === null) return;
 
-      const selected: CustomizationOption[] = customization.options
-        .filter((opt) => newQuantities[opt.id] > 0)
-        .map((opt) => ({
-          ...opt,
-          quantity: newQuantities[opt.id],
-        }));
+    const selected: CustomizationOption[] = customization.options
+      .filter((opt) => newQuantities[opt.id] > 0)
+      .map((opt) => ({
+        ...opt,
+        quantity: newQuantities[opt.id],
+      }));
 
-      const updatedItem = { ...items[editingIndex] };
-      updatedItem.selectedCustomizations = {
-        ...updatedItem.selectedCustomizations,
-        [customization.id]: selected,
-      };
+    const updatedItem = { ...items[editingIndex] };
+    updatedItem.selectedCustomizations = {
+      ...updatedItem.selectedCustomizations,
+      [customization.id]: selected,
+    };
 
-      useCartStore.setState((state) => {
-        const newItems = [...state.items];
-        newItems[editingIndex] = updatedItem;
-        return { items: newItems };
-      });
-    }, 0);
+    useCartStore.setState((state) => {
+      const newItems = [...state.items];
+      newItems[editingIndex] = updatedItem;
+      return { items: newItems };
+    });
   }
 
   return (

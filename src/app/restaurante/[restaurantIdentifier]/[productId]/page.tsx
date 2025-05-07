@@ -6,7 +6,7 @@ import { ProductCustomizationTitle } from "@/components/product/ProductCustomiza
 import { SingleCustomization } from "@/components/product/SingleCustomization";
 import { MultipleCustomization } from "@/components/product/MultipleCustomization";
 import { QuantityCustomization } from "@/components/product/QuantityCustomization";
-import { Textarea } from "@/components/ui/textarea";
+import { ProductObservation } from "@/components/product/ProductObservation";
 
 export default async function ProductPage({
   params,
@@ -51,7 +51,7 @@ export default async function ProductPage({
       </div>
 
       <div className="px-4 mt-6">
-        <Textarea placeholder="alguma observação do item? • opcional" />
+        <ProductObservation />
       </div>
 
       <div className="fixed bottom-0 left-0 right-0 p-4 bg-white border-t">

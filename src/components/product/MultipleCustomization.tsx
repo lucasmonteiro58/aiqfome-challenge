@@ -42,23 +42,21 @@ export function MultipleCustomization({ customization }: CustomizationProps) {
       return newSelectedOptions;
     });
 
-    setTimeout(() => {
-      if (editingIndex === null) return;
+    if (editingIndex === null) return;
 
-      const updatedItem = { ...items[editingIndex] };
-      updatedItem.selectedCustomizations = {
-        ...updatedItem.selectedCustomizations,
-        [customization.id]: customization.options.filter((opt) =>
-          newSelectedOptions.includes(opt.id)
-        ),
-      };
+    const updatedItem = { ...items[editingIndex] };
+    updatedItem.selectedCustomizations = {
+      ...updatedItem.selectedCustomizations,
+      [customization.id]: customization.options.filter((opt) =>
+        newSelectedOptions.includes(opt.id)
+      ),
+    };
 
-      useCartStore.setState((state) => {
-        const newItems = [...state.items];
-        newItems[editingIndex] = updatedItem;
-        return { items: newItems };
-      });
-    }, 0);
+    useCartStore.setState((state) => {
+      const newItems = [...state.items];
+      newItems[editingIndex] = updatedItem;
+      return { items: newItems };
+    });
   }
 
   return (
