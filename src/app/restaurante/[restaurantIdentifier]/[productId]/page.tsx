@@ -1,4 +1,4 @@
-import restaurantsJson from "@/data/restaurants.json";
+import restaurantsJson from "../../../../../public/data/restaurants.json";
 import { notFound } from "next/navigation";
 import { ProductHeader } from "@/components/product/ProductHeader";
 import { ProductQuantitySelector } from "@/components/product/ProductQuantitySelector";

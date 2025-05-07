@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import restaurantsJson from "@/data/restaurants.json";
+import restaurantsJson from "../../../../public/data/restaurants.json";
 import { Footer } from "@/components/Footer";
 import { RestaurantHeader } from "@/components/restaurant/RestaurantHeader";
 import { RestaurantMetaInfo } from "@/components/restaurant/RestaurantMetaInfo";
