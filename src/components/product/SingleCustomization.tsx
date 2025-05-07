@@ -1,18 +1,48 @@
-import { Customization, Product } from "@/types/restaurant";
+"use client";
+
+import { useState } from "react";
+import { Customization } from "@/types/restaurant";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { CircleDollarSign } from "lucide-react";
 import { formatCurrency } from "@/lib/utils";
+import { useCartStore } from "@/stores/cart.store";
 
 interface CustomizationProps {
   customization: Customization;
-  product?: Product;
 }
 
 export function SingleCustomization({ customization }: CustomizationProps) {
+  const [selectedOptionId, setSelectedOptionId] = useState(
+    customization.options[0]?.id
+  );
+  const { items } = useCartStore();
+
+  const handleSelectOption = (optionId: string) => {
+    setSelectedOptionId(optionId);
+    // Aqui vamos atualizar as customizações na store:
+    // Para simplificar, atualizaremos apenas o último item adicionado.
+    const lastItemIndex = items.length - 1;
+    if (lastItemIndex < 0) return;
+
+    const updatedItem = { ...items[lastItemIndex] };
+    updatedItem.selectedCustomizations = {
+      ...updatedItem.selectedCustomizations,
+      [customization.id]: customization.options.filter(
+        (opt) => opt.id === optionId
+      ),
+    };
+
+    useCartStore.setState((state) => {
+      const newItems = [...state.items];
+      newItems[lastItemIndex] = updatedItem;
+      return { items: newItems };
+    });
+  };
+
   return (
     <div className="pl-4 mt-4 pr-8 border-b-4 border-container-95 pb-4">
-      <RadioGroup defaultValue={customization.options?.[0]?.id}>
+      <RadioGroup value={selectedOptionId} onValueChange={handleSelectOption}>
         {customization.options.map((opt) => (
           <div className="flex items-center space-x-2" key={opt.id}>
             <RadioGroupItem value={opt.id} id={opt.id} />

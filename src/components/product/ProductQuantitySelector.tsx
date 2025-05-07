@@ -1,31 +1,66 @@
 "use client";
 
 import { useState } from "react";
-import { Product } from "@/types/restaurant";
+import { Product, Restaurant } from "@/types/restaurant";
 import { Button } from "../ui/button";
 import { QuantitySelector } from "../QuantitySelector";
+import { useCartStore } from "@/stores/cart.store";
 
 interface ProductQuantitySelectorProps {
   product: Product;
+  restaurant: Restaurant;
 }
 
 export function ProductQuantitySelector({
   product,
+  restaurant,
 }: ProductQuantitySelectorProps) {
   const [quantity, setQuantity] = useState(0);
+  const { addToCart } = useCartStore();
 
   const total = (quantity * product.price).toFixed(2).replace(".", ",");
 
   function handleAdd() {
-    setQuantity((q) => q + 1);
+    setQuantity(1);
+    addToCart(restaurant, {
+      product,
+      quantity: 1,
+      selectedCustomizations: {},
+      observation: "",
+    });
+  }
+
+  function handleIncrease() {
+    const newQuantity = quantity + 1;
+    setQuantity(newQuantity);
+
+    addToCart(restaurant, {
+      product,
+      quantity: newQuantity,
+      selectedCustomizations: {},
+      observation: "",
+    });
   }
 
   function handleDecrease() {
-    setQuantity((q) => (q > 1 ? q - 1 : 0));
+    const newQuantity = quantity > 1 ? quantity - 1 : 0;
+    setQuantity(newQuantity);
+
+    if (newQuantity > 0) {
+      addToCart(restaurant, {
+        product,
+        quantity: newQuantity,
+        selectedCustomizations: {},
+        observation: "",
+      });
+    } else {
+      // aqui podemos implementar depois um remove do carrinho
+    }
   }
 
   function handleRemove() {
     setQuantity(0);
+    // aqui podemos implementar depois um remove do carrinho
   }
 
   return (
@@ -49,7 +84,7 @@ export function ProductQuantitySelector({
         ) : (
           <QuantitySelector
             initialValue={quantity}
-            handleAdd={handleAdd}
+            handleAdd={handleIncrease}
             handleDecrease={handleDecrease}
             handleRemove={handleRemove}
             hasTrash

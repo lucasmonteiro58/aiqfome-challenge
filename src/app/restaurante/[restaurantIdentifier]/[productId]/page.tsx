@@ -31,7 +31,8 @@ export default async function ProductPage({
   return (
     <div className="pb-36">
       <ProductHeader product={product} />
-      <ProductQuantitySelector product={product} />
+      <ProductQuantitySelector product={product} restaurant={restaurant} />
+
       <div className="space-y-6 mt-6">
         {product.customizations?.map((customization, index) => (
           <div key={index}>
@@ -43,14 +44,12 @@ export default async function ProductPage({
               <MultipleCustomization customization={customization} />
             )}
             {customization.type === "quantity" && (
-              <QuantityCustomization
-                customization={customization}
-                product={product}
-              />
+              <QuantityCustomization customization={customization} />
             )}
           </div>
         ))}
       </div>
+
       <div className="px-4 mt-6">
         <Textarea placeholder="alguma observação do item? • opcional" />
       </div>

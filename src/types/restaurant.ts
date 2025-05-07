@@ -36,6 +36,7 @@ export interface Product {
 }
 
 export interface Customization {
+  id: string;
   type: "single" | "multiple" | "quantity";
   required?: boolean;
   title: string;
@@ -45,15 +46,6 @@ export interface Customization {
   options: CustomizationOption[];
 }
 
-export interface CustomizationOption {
-  id: string;
-  label: string;
-  price: number;
-  basePrice?: number;
-  hasPromotions?: boolean;
-  default?: boolean;
-}
-
 export interface Favorites {
   id: string;
   name: string;
@@ -61,3 +53,25 @@ export interface Favorites {
 }
 
 export type Substance = "alcohol" | "candy" | "gluten-free" | "spicy" | "vegan";
+
+export interface CustomizationOption {
+  id: string;
+  label: string;
+  price: number;
+  basePrice?: number;
+  hasPromotions?: boolean;
+}
+
+export interface CartItem {
+  product: Product;
+  quantity: number;
+  selectedCustomizations: Record<string, CustomizationOption[]>;
+  observation?: string;
+}
+
+export interface CartState {
+  restaurant: Restaurant | null;
+  items: CartItem[];
+  addToCart: (restaurant: Restaurant, item: CartItem) => void;
+  clearCart: () => void;
+}

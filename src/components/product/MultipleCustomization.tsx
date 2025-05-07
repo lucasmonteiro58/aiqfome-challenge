@@ -1,30 +1,49 @@
 "use client";
 
-import { Customization, Product } from "@/types/restaurant";
+import { useState } from "react";
+import { Customization } from "@/types/restaurant";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { CircleDollarSign } from "lucide-react";
 import { formatCurrency } from "@/lib/utils";
-import { useState } from "react";
+import { useCartStore } from "@/stores/cart.store";
 
 interface CustomizationProps {
   customization: Customization;
-  product?: Product;
 }
 
 export function MultipleCustomization({ customization }: CustomizationProps) {
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
-  const isMaxSelected = selectedOptions.length >= customization.max!;
+  const isMaxSelected = selectedOptions.length >= (customization.max || 0);
+  const { items } = useCartStore();
 
   function handleSelectOption(optionId: string) {
-    if (isMaxSelected && !selectedOptions.includes(optionId)) {
-      return;
-    }
-    setSelectedOptions((prev) =>
-      prev.includes(optionId)
+    setSelectedOptions((prev) => {
+      const newSelectedOptions = prev.includes(optionId)
         ? prev.filter((id) => id !== optionId)
-        : [...prev, optionId]
-    );
+        : isMaxSelected
+          ? prev
+          : [...prev, optionId];
+
+      const lastItemIndex = items.length - 1;
+      if (lastItemIndex < 0) return prev;
+
+      const updatedItem = { ...items[lastItemIndex] };
+      updatedItem.selectedCustomizations = {
+        ...updatedItem.selectedCustomizations,
+        [customization.id]: customization.options.filter((opt) =>
+          newSelectedOptions.includes(opt.id)
+        ),
+      };
+
+      useCartStore.setState((state) => {
+        const newItems = [...state.items];
+        newItems[lastItemIndex] = updatedItem;
+        return { items: newItems };
+      });
+
+      return newSelectedOptions;
+    });
   }
 
   return (
