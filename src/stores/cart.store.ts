@@ -14,18 +14,34 @@ export const useCartStore = create<CartState>()(
     (set, get) => ({
       restaurant: null,
       items: [],
-      addToCart: (restaurant, item) => {
+      addToCart: (restaurant, newItem) => {
         const currentRestaurant = get().restaurant;
 
         if (currentRestaurant && currentRestaurant.id !== restaurant.id) {
-          set({ restaurant, items: [item] });
-        } else {
-          set((state) => ({
-            restaurant,
-            items: [...state.items, item],
-          }));
+          return set({ restaurant, items: [newItem] });
         }
+
+        const existingItems = get().items;
+        const updatedItems = [...existingItems];
+        const index = existingItems.findIndex(
+          (item) =>
+            item.product.id === newItem.product.id &&
+            JSON.stringify(item.selectedCustomizations) ===
+              JSON.stringify(newItem.selectedCustomizations)
+        );
+
+        if (index !== -1) {
+          updatedItems[index] = {
+            ...updatedItems[index],
+            quantity: newItem.quantity,
+          };
+        } else {
+          updatedItems.push(newItem);
+        }
+
+        set({ restaurant, items: updatedItems });
       },
+
       clearCart: () => set({ restaurant: null, items: [] }),
     }),
     { name: "cart-storage" }

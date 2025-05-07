@@ -12,20 +12,23 @@ interface CustomizationProps {
 
 export function QuantityCustomization({ customization }: CustomizationProps) {
   const [quantities, setQuantities] = useState<Record<string, number>>({});
-  const { items } = useCartStore();
 
   function updateQuantity(optionId: string, newQuantity: number) {
-    setQuantities((prev) => {
-      const updated = { ...prev, [optionId]: newQuantity };
+    const newQuantities = {
+      ...quantities,
+      [optionId]: newQuantity,
+    };
 
+    setQuantities(newQuantities);
+
+    setTimeout(() => {
+      const { items } = useCartStore.getState();
       const lastItemIndex = items.length - 1;
-      if (lastItemIndex < 0) return prev;
+      if (lastItemIndex < 0) return;
 
       const selected: CustomizationOption[] = customization.options
-        .filter((opt) => updated[opt.id] > 0)
-        .flatMap(
-          (opt) => Array(updated[opt.id]).fill(opt) // repete o item pela quantidade
-        );
+        .filter((opt) => newQuantities[opt.id] > 0)
+        .flatMap((opt) => Array(newQuantities[opt.id]).fill(opt));
 
       const updatedItem = { ...items[lastItemIndex] };
       updatedItem.selectedCustomizations = {
@@ -38,9 +41,7 @@ export function QuantityCustomization({ customization }: CustomizationProps) {
         newItems[lastItemIndex] = updatedItem;
         return { items: newItems };
       });
-
-      return updated;
-    });
+    }, 0);
   }
 
   return (
@@ -60,7 +61,6 @@ export function QuantityCustomization({ customization }: CustomizationProps) {
               updateQuantity(opt.id, Math.max((quantities[opt.id] || 0) - 1, 0))
             }
             handleRemove={() => updateQuantity(opt.id, 0)}
-            hasTrash
           />
           <span className="flex-1 pl-4 text-light-text text-sm font-semibold">
             {opt.label}

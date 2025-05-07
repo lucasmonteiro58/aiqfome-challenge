@@ -15,18 +15,23 @@ interface CustomizationProps {
 export function MultipleCustomization({ customization }: CustomizationProps) {
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
   const isMaxSelected = selectedOptions.length >= (customization.max || 0);
-  const { items } = useCartStore();
 
   function handleSelectOption(optionId: string) {
+    let newSelectedOptions: string[] = [];
+
     setSelectedOptions((prev) => {
-      const newSelectedOptions = prev.includes(optionId)
+      newSelectedOptions = prev.includes(optionId)
         ? prev.filter((id) => id !== optionId)
-        : isMaxSelected
+        : isMaxSelected && !prev.includes(optionId)
           ? prev
           : [...prev, optionId];
+      return newSelectedOptions;
+    });
 
+    setTimeout(() => {
+      const { items } = useCartStore.getState();
       const lastItemIndex = items.length - 1;
-      if (lastItemIndex < 0) return prev;
+      if (lastItemIndex < 0) return;
 
       const updatedItem = { ...items[lastItemIndex] };
       updatedItem.selectedCustomizations = {
@@ -41,9 +46,7 @@ export function MultipleCustomization({ customization }: CustomizationProps) {
         newItems[lastItemIndex] = updatedItem;
         return { items: newItems };
       });
-
-      return newSelectedOptions;
-    });
+    }, 0);
   }
 
   return (

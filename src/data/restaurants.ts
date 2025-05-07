@@ -34,6 +34,7 @@ export const restaurants: Restaurant[] = [
             substances: ["gluten-free"],
             customizations: [
               {
+                id: "tamanho",
                 type: "single",
                 required: true,
                 title: "qual o tamanho?",
@@ -55,6 +56,7 @@ export const restaurants: Restaurant[] = [
                 ],
               },
               {
+                id: "acompanhamentos",
                 type: "multiple",
                 subtitle: "escolha de 1 a 2",
                 required: true,
@@ -85,6 +87,7 @@ export const restaurants: Restaurant[] = [
                 ],
               },
               {
+                id: "bebida",
                 type: "quantity",
                 required: false,
                 title: "vai querer bebida?",
@@ -117,6 +120,7 @@ export const restaurants: Restaurant[] = [
                 ],
               },
               {
+                id: "talher",
                 type: "single",
                 required: false,
                 subtitle: "escolha até 1",
@@ -135,6 +139,7 @@ export const restaurants: Restaurant[] = [
                 ],
               },
               {
+                id: "adicionais",
                 type: "multiple",
                 required: false,
                 max: 2,
@@ -173,6 +178,7 @@ export const restaurants: Restaurant[] = [
             substances: ["vegan"],
             customizations: [
               {
+                id: "proteina",
                 type: "single",
                 required: false,
                 title: "Adicionar proteína?",
@@ -416,6 +422,7 @@ export const restaurants: Restaurant[] = [
             customizations: [
               {
                 type: "single",
+                id: "combo",
                 required: true,
                 title: "quer em combo?",
                 options: [
@@ -459,6 +466,7 @@ export const restaurants: Restaurant[] = [
             customizations: [
               {
                 type: "single",
+                id: "sabor",
                 required: true,
                 title: "sabor",
                 options: [
@@ -511,6 +519,7 @@ export const restaurants: Restaurant[] = [
             customizations: [
               {
                 type: "single",
+                id: "tamanho",
                 required: true,
                 title: "tamanho",
                 options: [
@@ -529,6 +538,7 @@ export const restaurants: Restaurant[] = [
               },
               {
                 type: "multiple",
+                id: "vegetais",
                 required: true,
                 min: 2,
                 max: 5,
@@ -609,6 +619,7 @@ export const restaurants: Restaurant[] = [
             customizations: [
               {
                 type: "single",
+                id: "tamanho",
                 required: true,
                 title: "tamanho",
                 options: [
@@ -675,6 +686,7 @@ export const restaurants: Restaurant[] = [
             customizations: [
               {
                 type: "multiple",
+                id: "toppings",
                 required: false,
                 title: "Adicionais",
                 options: [
