@@ -29,7 +29,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="p-4 space-y-2">
+      <div className="p-4 space-y-2 mb-10">
         <h1 className="text-xl font-bold mb-2 text-purple-text">fechados</h1>
         <div className="space-y-3">
           {closedRestaurants.map((r) => (
