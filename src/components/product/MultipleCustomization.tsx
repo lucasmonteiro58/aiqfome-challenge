@@ -22,13 +22,13 @@ export function MultipleCustomization({ customization }: CustomizationProps) {
     if (
       editingIndex !== null &&
       items[editingIndex] &&
-      items[editingIndex].selectedCustomizations?.[customization.id]
+      items[editingIndex].selectedCustomizations?.[customization.title]
     ) {
       const selected =
-        items[editingIndex].selectedCustomizations[customization.id];
+        items[editingIndex].selectedCustomizations[customization.title];
       setSelectedOptions(selected.map((opt) => opt.id));
     }
-  }, [editingIndex, items, customization.id]);
+  }, [editingIndex, items, customization.title]);
 
   function handleSelectOption(optionId: string) {
     let newSelectedOptions: string[] = [];
@@ -47,7 +47,7 @@ export function MultipleCustomization({ customization }: CustomizationProps) {
     const updatedItem = { ...items[editingIndex] };
     updatedItem.selectedCustomizations = {
       ...updatedItem.selectedCustomizations,
-      [customization.id]: customization.options.filter((opt) =>
+      [customization.title]: customization.options.filter((opt) =>
         newSelectedOptions.includes(opt.id)
       ),
     };

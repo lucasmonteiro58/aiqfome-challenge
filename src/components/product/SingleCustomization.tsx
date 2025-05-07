@@ -22,15 +22,15 @@ export function SingleCustomization({ customization }: CustomizationProps) {
     if (
       editingIndex !== null &&
       items[editingIndex] &&
-      items[editingIndex].selectedCustomizations?.[customization.id]
+      items[editingIndex].selectedCustomizations?.[customization.title]
     ) {
       const selected =
-        items[editingIndex].selectedCustomizations[customization.id];
+        items[editingIndex].selectedCustomizations[customization.title];
       if (selected?.[0]?.id) {
         setSelectedOptionId(selected[0].id);
       }
     }
-  }, [editingIndex, items, customization.id]);
+  }, [editingIndex, items, customization.title]);
 
   const handleSelectOption = (optionId: string) => {
     setSelectedOptionId(optionId);
@@ -40,7 +40,7 @@ export function SingleCustomization({ customization }: CustomizationProps) {
     const updatedItem = { ...items[editingIndex] };
     updatedItem.selectedCustomizations = {
       ...updatedItem.selectedCustomizations,
-      [customization.id]: customization.options.filter(
+      [customization.title]: customization.options.filter(
         (opt) => opt.id === optionId
       ),
     };

@@ -1,11 +1,10 @@
 "use client";
 
 import { useCartStore } from "@/stores/cart.store";
-import { formatCurrency } from "@/lib/utils";
-
 import { CartHeader } from "@/components/cart/CartHeader";
 import { CartItemTitle } from "@/components/cart/CartItemTitle";
 import { CartEdit } from "@/components/cart/CartEdit";
+import { CartItemList } from "@/components/cart/CartItemList";
 
 export default function CartContent() {
   const { items, restaurant } = useCartStore();
@@ -24,35 +23,21 @@ export default function CartContent() {
   return (
     <div className="pb-32">
       <CartHeader restaurant={restaurant} />
-      <div className="px-4 space-y-6">
+      <div className="space-y-6">
         {items.map((item, index) => (
-          <div key={index} className="border-b pb-4 space-y-1">
+          <div
+            key={index}
+            className="px-4 border-b-4 border-container-95 pb-4 space-y-1"
+          >
             <CartItemTitle item={item} />
             <div className="flex justify-end w-full items-center mt-2">
               <CartEdit item={item} restaurant={restaurant} />
             </div>
 
-            {Object.entries(item.selectedCustomizations).map(
-              ([label, options]) => (
-                <div key={label} className="text-sm text-muted-foreground pl-1">
-                  <div className="text-[13px] font-semibold">• {label}</div>
-                  {options.map((opt, i) => (
-                    <div key={i} className="ml-2 text-sm">
-                      {opt.label}
-                      {opt.quantity ? ` x${opt.quantity}` : ""}
-                      {opt.price > 0 && (
-                        <span className="text-purple-brand font-semibold ml-1">
-                          +{formatCurrency(opt.price)}
-                        </span>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              )
-            )}
+            <CartItemList item={item} />
 
             {item.observation && (
-              <div className="bg-gray-100 rounded-md p-2 mt-2 text-sm">
+              <div className="bg-container-97 rounded p-2 mt-2 text-sm text-medium-text">
                 <strong>observação:</strong> {item.observation}
               </div>
             )}

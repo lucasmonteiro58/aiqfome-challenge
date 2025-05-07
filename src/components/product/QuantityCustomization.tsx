@@ -18,10 +18,10 @@ export function QuantityCustomization({ customization }: CustomizationProps) {
     if (
       editingIndex !== null &&
       items[editingIndex] &&
-      items[editingIndex].selectedCustomizations?.[customization.id]
+      items[editingIndex].selectedCustomizations?.[customization.title]
     ) {
       const selected =
-        items[editingIndex].selectedCustomizations[customization.id];
+        items[editingIndex].selectedCustomizations[customization.title];
       const counts: Record<string, number> = {};
 
       selected.forEach((opt) => {
@@ -34,7 +34,7 @@ export function QuantityCustomization({ customization }: CustomizationProps) {
 
       setQuantities(counts);
     }
-  }, [editingIndex, items, customization.id]);
+  }, [editingIndex, items, customization.title]);
 
   function updateQuantity(optionId: string, newQuantity: number) {
     const newQuantities = {
@@ -56,7 +56,7 @@ export function QuantityCustomization({ customization }: CustomizationProps) {
     const updatedItem = { ...items[editingIndex] };
     updatedItem.selectedCustomizations = {
       ...updatedItem.selectedCustomizations,
-      [customization.id]: selected,
+      [customization.title]: selected,
     };
 
     useCartStore.setState((state) => {
