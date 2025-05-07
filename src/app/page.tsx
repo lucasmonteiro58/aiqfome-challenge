@@ -14,7 +14,7 @@ export default function Home() {
       <div className="bg-white shadow-sm">
         <SearchInput />
       </div>
-      <div className="container mx-auto sm:mt-2 mt-0 sm:px-4 px-0">
+      <div className="container mx-auto sm:mt-2 mt-0 sm:px-4 px-0 max-w-[1000px]">
         <Image
           src="/images/banner.png"
           alt="Banner"
@@ -23,10 +23,10 @@ export default function Home() {
           className="w-full h-auto sm:rounded-lg rounded-none"
         />
       </div>
-      <main className="flex-grow container mx-auto px-4 py-6">
+      <main className="flex-grow container mx-auto px-4 py-6 max-w-[1000px]">
         <section className="mb-10">
           <h2 className="text-2xl font-bold text-purple-text mb-4">Abertos</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-6">
             {(openedRestaurants as Restaurant[]).map((r) => (
               <RestaurantCard key={r.id} {...r} />
             ))}
@@ -35,7 +35,7 @@ export default function Home() {
 
         <section>
           <h2 className="text-2xl font-bold text-purple-text mb-4">Fechados</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-6">
             {closedRestaurants.map((r) => (
               <RestaurantCard key={r.id} {...r} />
             ))}

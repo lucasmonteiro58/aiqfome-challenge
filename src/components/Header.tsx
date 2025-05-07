@@ -12,7 +12,7 @@ export function Header() {
   };
   return (
     <header className="bg-purple-brand px-4 py-3 text-white  sticky top-0 z-10">
-      <div className="container mx-auto flex items-center justify-between">
+      <div className="container mx-auto flex items-center justify-between max-w-[1000px]">
         <div className="flex items-center gap-2">
           <Image
             src="/images/logo.png"

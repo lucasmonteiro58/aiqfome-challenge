@@ -41,9 +41,9 @@ export default async function RestaurantPage({
 
   return (
     <div className="flex flex-col mt-2">
-      <div className="min-h-[calc(100vh-190px)] container mx-auto">
+      <div className="min-h-[calc(100vh-190px)] container mx-auto max-w-[1000px]">
         <div className="flex-grow">
-          <div className="py-4 space-y-3">
+          <div className="py-4 space-y-3 ">
             <RestaurantHeader
               id={restaurant.id}
               name={restaurant.name}

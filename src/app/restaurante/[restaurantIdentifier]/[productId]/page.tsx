@@ -55,7 +55,7 @@ export default async function ProductPage({
 
   return (
     <>
-      <div className="container mx-auto">
+      <div className="container mx-auto max-w-[1000px]">
         <ProductHeader product={product} />
         <ProductQuantitySelector product={product} restaurant={restaurant} />
 

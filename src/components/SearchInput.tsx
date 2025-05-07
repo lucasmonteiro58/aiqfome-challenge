@@ -4,7 +4,7 @@ import { Search } from "lucide-react";
 export function SearchInput() {
   return (
     <div className="bg-purple-brand px-4 pb-4 pt-2">
-      <div className="container mx-auto">
+      <div className="container mx-auto max-w-[1000px]">
         <div className="relative">
           <Search
             size={18}
