@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Customization } from "@/types/restaurant";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -18,6 +18,7 @@ export function MultipleCustomization({ customization }: CustomizationProps) {
   const { items, editingIndex } = useCartStore();
   const { errors, setError, clearError } = useValidationStore();
 
+  const errorRef = useRef<HTMLParagraphElement>(null);
   const isMaxSelected = selectedOptions.length >= (customization.max || 0);
 
   useEffect(() => {
@@ -31,6 +32,12 @@ export function MultipleCustomization({ customization }: CustomizationProps) {
       setSelectedOptions(selected.map((opt) => opt.id));
     }
   }, [editingIndex, items, customization.title]);
+
+  useEffect(() => {
+    if (errors[customization.title] && errorRef.current) {
+      errorRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }, [errors, customization.title]);
 
   function handleSelectOption(optionId: string) {
     let newSelectedOptions: string[] = [];
@@ -114,7 +121,9 @@ export function MultipleCustomization({ customization }: CustomizationProps) {
         </div>
       ))}
       {errors[customization.title] && (
-        <p className="text-red-500 text-sm">{errors[customization.title]}</p>
+        <p ref={errorRef} className="text-red-500 text-sm scroll-mt-20">
+          {errors[customization.title]}
+        </p>
       )}
     </div>
   );
