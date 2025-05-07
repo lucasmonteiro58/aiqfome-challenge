@@ -6,6 +6,7 @@ import { ProductCustomizationTitle } from "@/components/product/ProductCustomiza
 import { SingleCustomization } from "@/components/product/SingleCustomization";
 import { MultipleCustomization } from "@/components/product/MultipleCustomization";
 import { QuantityCustomization } from "@/components/product/QuantityCustomization";
+import { Textarea } from "@/components/ui/textarea";
 
 export default async function ProductPage({
   params,
@@ -50,12 +51,9 @@ export default async function ProductPage({
           </div>
         ))}
       </div>
-
-      <textarea
-        className="mt-6 w-full p-3 border rounded text-sm"
-        rows={3}
-        placeholder="alguma observação do item? • opcional"
-      />
+      <div className="px-4 mt-6">
+        <Textarea placeholder="alguma observação do item? • opcional" />
+      </div>
 
       <div className="fixed bottom-0 left-0 right-0 p-4 bg-white border-t">
         <button className="w-full bg-purple-brand text-white py-3 rounded-lg font-bold">
