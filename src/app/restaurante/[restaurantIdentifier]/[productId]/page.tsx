@@ -9,13 +9,34 @@ import { QuantityCustomization } from "@/components/product/QuantityCustomizatio
 import { ProductObservation } from "@/components/product/ProductObservation";
 import { Footer } from "@/components/Footer";
 import { TicketButton } from "@/components/TicketButton";
+import { Metadata } from "next";
 
-export default function ProductPage({
+type ProductPageParams = Promise<{
+  restaurantIdentifier: string;
+  productId: string;
+}>;
+
+export async function generateMetadata({
   params,
 }: {
-  params: { restaurantIdentifier: string; productId: string };
+  params: ProductPageParams;
+}): Promise<Metadata> {
+  const { restaurantIdentifier } = await params;
+  const restaurant = restaurants.find(
+    (r) => r.identifier === restaurantIdentifier
+  );
+  return {
+    title: restaurant?.name ?? "Restaurante",
+  };
+}
+
+export default async function ProductPage({
+  params,
+}: {
+  params: ProductPageParams;
 }) {
-  const { restaurantIdentifier, productId } = params;
+  const { restaurantIdentifier, productId } = await params;
+
   const restaurant = restaurants.find(
     (r) => r.identifier === restaurantIdentifier
   );

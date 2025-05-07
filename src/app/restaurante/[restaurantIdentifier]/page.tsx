@@ -6,14 +6,17 @@ import { RestaurantMetaInfo } from "@/components/restaurant/RestaurantMetaInfo";
 import { RestaurantCategoryList } from "@/components/restaurant/RestaurantCategoryList";
 import { Metadata } from "next";
 
-type RestaurantPageProps = {
-  params: { restaurantIdentifier: string };
-};
+type RestaurantPageProps = Promise<{
+  restaurantIdentifier: string;
+  productId: string;
+}>;
 
 export async function generateMetadata({
   params,
-}: RestaurantPageProps): Promise<Metadata> {
-  const { restaurantIdentifier } = params;
+}: {
+  params: RestaurantPageProps;
+}): Promise<Metadata> {
+  const { restaurantIdentifier } = await params;
   const restaurant = restaurants.find(
     (r) => r.identifier === restaurantIdentifier
   );
@@ -22,8 +25,12 @@ export async function generateMetadata({
   };
 }
 
-export default async function RestaurantPage({ params }: RestaurantPageProps) {
-  const { restaurantIdentifier } = params;
+export default async function RestaurantPage({
+  params,
+}: {
+  params: RestaurantPageProps;
+}) {
+  const { restaurantIdentifier } = await params;
   const restaurant = restaurants.find(
     (r) => r.identifier === restaurantIdentifier
   );
