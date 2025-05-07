@@ -9,17 +9,21 @@ import { Star } from "lucide-react";
 export function RestaurantCard(props: Restaurant) {
   const router = useRouter();
 
+  const isClosed = props.isOpen === false;
+
   return (
     <div
-      onClick={() => router.push(`restaurante/${props.identifier}`)}
-      className="flex items-center gap-3  bg-container-97 hover:bg-container-95 transition cursor-pointer rounded-xl"
+      onClick={() =>
+        !isClosed && router.push(`restaurante/${props.identifier}`)
+      }
+      className="flex items-center gap-3 bg-container-97 hover:bg-container-95 transition cursor-pointer rounded-xl"
     >
       <Image
         src={props.logo}
         alt={props.name}
         width={72}
         height={72}
-        className="rounded-l-md object-cover"
+        className={`rounded-l-md object-cover ${isClosed ? "opacity-50" : ""}`}
       />
 
       <div className="flex flex-col justify-center">

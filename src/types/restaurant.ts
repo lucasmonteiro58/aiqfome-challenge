@@ -11,6 +11,7 @@ export interface Restaurant {
   openingTime: string;
   closingTime: string;
   freeDeliveryThreshold: number;
+  isOpen: boolean;
   minOrder: number;
   categories: Category[];
 }
