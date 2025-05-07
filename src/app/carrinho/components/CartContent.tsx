@@ -9,16 +9,18 @@ import { CartItemList } from "@/components/cart/CartItemList";
 export default function CartContent() {
   const { items, restaurant } = useCartStore();
 
-  const subtotal = items.reduce((total, item) => {
-    const base = item.product.price * item.quantity;
-    const extras = Object.values(item.selectedCustomizations || {})
-      .flat()
-      .reduce((sum, opt) => {
-        return sum + (opt.price || 0) * (opt.quantity || 1);
-      }, 0);
+  const subtotal = items
+    .filter((item) => item.product && typeof item.product.price === "number")
+    .reduce((total, item) => {
+      const base = item.product.price * item.quantity;
+      const extras = Object.values(item.selectedCustomizations || {})
+        .flat()
+        .reduce((sum, opt) => {
+          return sum + (opt.price || 0) * (opt.quantity || 1);
+        }, 0);
 
-    return total + base + extras;
-  }, 0);
+      return total + base + extras;
+    }, 0);
 
   return (
     <div className="pb-32">
@@ -31,7 +33,7 @@ export default function CartContent() {
           >
             <CartItemTitle item={item} />
             <div className="flex justify-end w-full items-center mt-2">
-              <CartEdit item={item} restaurant={restaurant} />
+              <CartEdit item={item} restaurant={restaurant} index={index} />
             </div>
 
             <CartItemList item={item} />

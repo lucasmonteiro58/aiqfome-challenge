@@ -9,17 +9,16 @@ import { QuantitySelector } from "../QuantitySelector";
 interface CartItemProps {
   item: CartItem;
   restaurant: Restaurant | null;
+  index: number;
 }
 
-export function CartEdit({ item, restaurant }: CartItemProps) {
-  const { addToCart, items, restaurant: storeRestaurant } = useCartStore();
-
-  const index = items.findIndex(
-    (i) =>
-      i.product.id === item.product.id &&
-      JSON.stringify(i.selectedCustomizations) ===
-        JSON.stringify(item.selectedCustomizations)
-  );
+export function CartEdit({ item, restaurant, index }: CartItemProps) {
+  const {
+    items,
+    restaurant: storeRestaurant,
+    updateItemAtIndex,
+    setEditingIndex,
+  } = useCartStore();
 
   function updateQuantity(newQuantity: number) {
     if (!storeRestaurant) return;
@@ -30,13 +29,13 @@ export function CartEdit({ item, restaurant }: CartItemProps) {
         newItems.splice(index, 1);
         return { items: newItems };
       });
-      return;
+    } else {
+      const updatedItem = {
+        ...items[index],
+        quantity: newQuantity,
+      };
+      updateItemAtIndex(index, updatedItem);
     }
-
-    addToCart(storeRestaurant, {
-      ...item,
-      quantity: newQuantity,
-    });
   }
 
   return (
@@ -44,6 +43,7 @@ export function CartEdit({ item, restaurant }: CartItemProps) {
       <Link
         href={`/restaurante/${restaurant?.identifier}/${item.product.id}`}
         className="text-sm text-teal-brand font-semibold flex items-center gap-1"
+        onClick={() => setEditingIndex(index)}
       >
         <Pencil size={14} />
         editar

@@ -8,6 +8,7 @@ interface CartState {
   editingIndex: number | null;
   setEditingIndex: (index: number | null) => void;
   addToCart: (restaurant: Restaurant, item: CartItem) => void;
+  updateItemAtIndex: (index: number, updatedItem: CartItem) => void;
   removeItem: (productId: string) => void;
   clearCart: () => void;
 }
@@ -43,6 +44,13 @@ export const useCartStore = create<CartState>()(
         }
 
         set({ restaurant, items });
+      },
+      updateItemAtIndex: (index: number, updatedItem: CartItem) => {
+        const items = [...get().items];
+        if (items[index]) {
+          items[index] = { ...updatedItem };
+          set({ items });
+        }
       },
 
       clearCart: () => set({ restaurant: null, items: [], editingIndex: null }),
