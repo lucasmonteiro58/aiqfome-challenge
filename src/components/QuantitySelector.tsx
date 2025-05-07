@@ -1,14 +1,13 @@
 "use client";
 
 import { Trash2, Plus, Minus } from "lucide-react";
-import { useState } from "react";
 
 interface QuantitySelectorProps {
   hasTrash?: boolean;
   handleAdd?: () => void;
   handleDecrease?: () => void;
   handleRemove?: () => void;
-  initialValue?: number;
+  value: number;
   size?: "sm" | "normal";
 }
 
@@ -17,32 +16,23 @@ export function QuantitySelector({
   handleAdd,
   handleDecrease,
   handleRemove,
-  initialValue = 0,
+  value,
   size = "normal",
 }: QuantitySelectorProps) {
-  const [quantity, setQuantity] = useState(initialValue);
-
   const isSmall = size === "sm";
   const buttonSize = isSmall ? "w-6 h-6" : "w-8 h-8";
   const iconSize = isSmall ? 14 : 20;
 
-  const increment = () => {
-    handleAdd?.();
-    setQuantity((q) => q + 1);
-  };
-
   const decrement = () => {
-    if (quantity > 1) {
+    if (value > 1) {
       handleDecrease?.();
-      setQuantity((q) => q - 1);
     } else {
       handleRemove?.();
-      setQuantity(0);
     }
   };
 
   const renderDecreaseButton = () => {
-    if (quantity > 0) {
+    if (value > 0) {
       return (
         <button
           onClick={decrement}
@@ -79,9 +69,9 @@ export function QuantitySelector({
   return (
     <div className="flex items-center gap-3 justify-center">
       {renderDecreaseButton()}
-      <span className="text-dark-text font-bold text-sm">{quantity}</span>
+      <span className="text-dark-text font-bold text-sm">{value}</span>
       <button
-        onClick={increment}
+        onClick={handleAdd}
         className={`${buttonSize} border border-teal-brand rounded-full text-teal-brand flex items-center justify-center`}
       >
         <Plus size={iconSize} />

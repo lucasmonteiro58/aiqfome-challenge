@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Customization } from "@/types/restaurant";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -14,7 +14,21 @@ interface CustomizationProps {
 
 export function MultipleCustomization({ customization }: CustomizationProps) {
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+  const { items, editingIndex } = useCartStore();
+
   const isMaxSelected = selectedOptions.length >= (customization.max || 0);
+
+  useEffect(() => {
+    if (
+      editingIndex !== null &&
+      items[editingIndex] &&
+      items[editingIndex].selectedCustomizations?.[customization.id]
+    ) {
+      const selected =
+        items[editingIndex].selectedCustomizations[customization.id];
+      setSelectedOptions(selected.map((opt) => opt.id));
+    }
+  }, [editingIndex, items, customization.id]);
 
   function handleSelectOption(optionId: string) {
     let newSelectedOptions: string[] = [];
@@ -29,11 +43,9 @@ export function MultipleCustomization({ customization }: CustomizationProps) {
     });
 
     setTimeout(() => {
-      const { items } = useCartStore.getState();
-      const lastItemIndex = items.length - 1;
-      if (lastItemIndex < 0) return;
+      if (editingIndex === null) return;
 
-      const updatedItem = { ...items[lastItemIndex] };
+      const updatedItem = { ...items[editingIndex] };
       updatedItem.selectedCustomizations = {
         ...updatedItem.selectedCustomizations,
         [customization.id]: customization.options.filter((opt) =>
@@ -43,7 +55,7 @@ export function MultipleCustomization({ customization }: CustomizationProps) {
 
       useCartStore.setState((state) => {
         const newItems = [...state.items];
-        newItems[lastItemIndex] = updatedItem;
+        newItems[editingIndex] = updatedItem;
         return { items: newItems };
       });
     }, 0);

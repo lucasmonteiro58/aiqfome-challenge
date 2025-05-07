@@ -61,6 +61,7 @@ export interface CustomizationOption {
   basePrice?: number;
   hasPromotions?: boolean;
   default?: boolean;
+  quantity?: number;
 }
 
 export interface CartItem {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Customization } from "@/types/restaurant";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
@@ -16,16 +16,28 @@ export function SingleCustomization({ customization }: CustomizationProps) {
   const [selectedOptionId, setSelectedOptionId] = useState(
     customization.options[0]?.id
   );
-  const { items } = useCartStore();
+  const { items, editingIndex } = useCartStore();
+
+  useEffect(() => {
+    if (
+      editingIndex !== null &&
+      items[editingIndex] &&
+      items[editingIndex].selectedCustomizations?.[customization.id]
+    ) {
+      const selected =
+        items[editingIndex].selectedCustomizations[customization.id];
+      if (selected?.[0]?.id) {
+        setSelectedOptionId(selected[0].id);
+      }
+    }
+  }, [editingIndex, items, customization.id]);
 
   const handleSelectOption = (optionId: string) => {
     setSelectedOptionId(optionId);
-    // Aqui vamos atualizar as customizações na store:
-    // Para simplificar, atualizaremos apenas o último item adicionado.
-    const lastItemIndex = items.length - 1;
-    if (lastItemIndex < 0) return;
 
-    const updatedItem = { ...items[lastItemIndex] };
+    if (editingIndex === null) return;
+
+    const updatedItem = { ...items[editingIndex] };
     updatedItem.selectedCustomizations = {
       ...updatedItem.selectedCustomizations,
       [customization.id]: customization.options.filter(
@@ -35,7 +47,7 @@ export function SingleCustomization({ customization }: CustomizationProps) {
 
     useCartStore.setState((state) => {
       const newItems = [...state.items];
-      newItems[lastItemIndex] = updatedItem;
+      newItems[editingIndex] = updatedItem;
       return { items: newItems };
     });
   };

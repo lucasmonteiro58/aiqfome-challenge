@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Customization, CustomizationOption } from "@/types/restaurant";
 import { formatCurrency } from "@/lib/utils";
 import { QuantitySelector } from "../QuantitySelector";
@@ -12,6 +12,29 @@ interface CustomizationProps {
 
 export function QuantityCustomization({ customization }: CustomizationProps) {
   const [quantities, setQuantities] = useState<Record<string, number>>({});
+  const { items, editingIndex } = useCartStore();
+
+  useEffect(() => {
+    if (
+      editingIndex !== null &&
+      items[editingIndex] &&
+      items[editingIndex].selectedCustomizations?.[customization.id]
+    ) {
+      const selected =
+        items[editingIndex].selectedCustomizations[customization.id];
+      const counts: Record<string, number> = {};
+
+      selected.forEach((opt) => {
+        if (opt.quantity) {
+          counts[opt.id] = opt.quantity;
+        } else {
+          counts[opt.id] = (counts[opt.id] || 0) + 1;
+        }
+      });
+
+      setQuantities(counts);
+    }
+  }, [editingIndex, items, customization.id]);
 
   function updateQuantity(optionId: string, newQuantity: number) {
     const newQuantities = {
@@ -22,15 +45,16 @@ export function QuantityCustomization({ customization }: CustomizationProps) {
     setQuantities(newQuantities);
 
     setTimeout(() => {
-      const { items } = useCartStore.getState();
-      const lastItemIndex = items.length - 1;
-      if (lastItemIndex < 0) return;
+      if (editingIndex === null) return;
 
       const selected: CustomizationOption[] = customization.options
         .filter((opt) => newQuantities[opt.id] > 0)
-        .flatMap((opt) => Array(newQuantities[opt.id]).fill(opt));
+        .map((opt) => ({
+          ...opt,
+          quantity: newQuantities[opt.id],
+        }));
 
-      const updatedItem = { ...items[lastItemIndex] };
+      const updatedItem = { ...items[editingIndex] };
       updatedItem.selectedCustomizations = {
         ...updatedItem.selectedCustomizations,
         [customization.id]: selected,
@@ -38,7 +62,7 @@ export function QuantityCustomization({ customization }: CustomizationProps) {
 
       useCartStore.setState((state) => {
         const newItems = [...state.items];
-        newItems[lastItemIndex] = updatedItem;
+        newItems[editingIndex] = updatedItem;
         return { items: newItems };
       });
     }, 0);
@@ -53,7 +77,7 @@ export function QuantityCustomization({ customization }: CustomizationProps) {
         >
           <QuantitySelector
             size="sm"
-            initialValue={quantities[opt.id] || 0}
+            value={quantities[opt.id] || 0}
             handleAdd={() =>
               updateQuantity(opt.id, (quantities[opt.id] || 0) + 1)
             }

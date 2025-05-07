@@ -15,7 +15,7 @@ export function ProductQuantitySelector({
   product,
   restaurant,
 }: ProductQuantitySelectorProps) {
-  const { items, addToCart, setEditingIndex } = useCartStore();
+  const { items, addToCart, setEditingIndex, removeItem } = useCartStore();
   const [quantity, setQuantity] = useState(0);
 
   useEffect(() => {
@@ -33,6 +33,12 @@ export function ProductQuantitySelector({
   const total = (quantity * product.price).toFixed(2).replace(".", ",");
 
   function updateCart(newQuantity: number) {
+    if (newQuantity === 0) {
+      setQuantity(0);
+      removeItem(product.id);
+      return;
+    }
+
     setQuantity(newQuantity);
     addToCart(restaurant, {
       product,
@@ -62,7 +68,7 @@ export function ProductQuantitySelector({
           </Button>
         ) : (
           <QuantitySelector
-            initialValue={quantity}
+            value={quantity}
             handleAdd={() => updateCart(quantity + 1)}
             handleDecrease={() => updateCart(quantity > 1 ? quantity - 1 : 0)}
             handleRemove={() => updateCart(0)}
