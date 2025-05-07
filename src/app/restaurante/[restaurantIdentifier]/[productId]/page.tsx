@@ -1,4 +1,4 @@
-import { restaurants } from "@/data/restaurants";
+import restaurantsJson from "@/data/restaurants.json";
 import { notFound } from "next/navigation";
 import { ProductHeader } from "@/components/product/ProductHeader";
 import { ProductQuantitySelector } from "@/components/product/ProductQuantitySelector";
@@ -10,6 +10,7 @@ import { ProductObservation } from "@/components/product/ProductObservation";
 import { Footer } from "@/components/Footer";
 import { TicketButton } from "@/components/TicketButton";
 import { Metadata } from "next";
+import { Restaurant } from "@/types/restaurant";
 
 type ProductPageParams = Promise<{
   restaurantIdentifier: string;
@@ -21,6 +22,7 @@ export async function generateMetadata({
 }: {
   params: ProductPageParams;
 }): Promise<Metadata> {
+  const restaurants = restaurantsJson as Restaurant[];
   const { restaurantIdentifier } = await params;
   const restaurant = restaurants.find(
     (r) => r.identifier === restaurantIdentifier
@@ -37,6 +39,7 @@ export default async function ProductPage({
 }: {
   params: ProductPageParams;
 }) {
+  const restaurants = restaurantsJson as Restaurant[];
   const { restaurantIdentifier, productId } = await params;
 
   const restaurant = restaurants.find(

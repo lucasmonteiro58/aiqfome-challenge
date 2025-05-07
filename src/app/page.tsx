@@ -1,11 +1,12 @@
 import { Footer } from "@/components/Footer";
 import { RestaurantCard } from "@/components/RestaurantCard";
 import { SearchInput } from "@/components/SearchInput";
-import { restaurants } from "@/data/restaurants";
+import restaurantsJson from "@/data/restaurants.json";
 import { Restaurant } from "@/types/restaurant";
 import Image from "next/image";
 
 export default function Home() {
+  const restaurants = restaurantsJson as Restaurant[];
   const openedRestaurants = restaurants.filter((r) => r.isOpen);
   const closedRestaurants = restaurants.filter((r) => !r.isOpen);
 
