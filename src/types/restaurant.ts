@@ -39,6 +39,7 @@ export interface Customization {
   type: "single" | "multiple" | "quantity";
   required?: boolean;
   title: string;
+  subtitle?: string;
   min?: number;
   max?: number;
   options: CustomizationOption[];

@@ -2,6 +2,7 @@ import { restaurants } from "@/data/restaurants";
 import { notFound } from "next/navigation";
 import { ProductHeader } from "@/components/product/ProductHeader";
 import { ProductQuantitySelector } from "@/components/product/ProductQuantitySelector";
+import { ProductCustomizationTitle } from "@/components/product/ProductCustomizationTitle";
 
 export default async function ProductPage({
   params,
@@ -30,15 +31,7 @@ export default async function ProductPage({
       <div className="space-y-6 mt-6">
         {product.customizations?.map((customization, index) => (
           <div key={index}>
-            <div className="font-semibold text-sm mb-2 flex justify-between">
-              <span>{customization.title}</span>
-              {customization.required && (
-                <span className="text-xs bg-black/10 rounded px-2 py-0.5">
-                  obrigatório
-                </span>
-              )}
-            </div>
-
+            <ProductCustomizationTitle customization={customization} />
             {customization.type === "single" &&
               customization.options.map((opt) => (
                 <label key={opt.id} className="flex items-center gap-3 py-1">
@@ -57,7 +50,6 @@ export default async function ProductPage({
                   </div>
                 </label>
               ))}
-
             {customization.type === "multiple" &&
               customization.options.map((opt) => (
                 <label key={opt.id} className="flex items-center gap-3 py-1">
@@ -76,7 +68,6 @@ export default async function ProductPage({
                   </div>
                 </label>
               ))}
-
             {customization.type === "quantity" &&
               customization.options.map((opt) => (
                 <div
@@ -87,7 +78,7 @@ export default async function ProductPage({
                   <span className="text-purple-brand font-bold">
                     +R$ {opt.price.toFixed(2).replace(".", ",")}
                   </span>
-                  {/* Aqui entraria o contador de quantidade */}
+
                   <div className="flex items-center gap-2">
                     <button>-</button>
                     <span>0</span>

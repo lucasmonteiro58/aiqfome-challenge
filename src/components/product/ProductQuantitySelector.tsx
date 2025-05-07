@@ -29,7 +29,7 @@ export function ProductQuantitySelector({
   }
 
   return (
-    <div className="pt-2 mt-2 px-4">
+    <div className="pt-2 mt-2 px-4 border-b-4 border-container-95 pb-5">
       <div className="flex items-center justify-between mt-1 h-12">
         <div className="flex flex-col gap-2">
           <span className="font-bold text-medium-text">quantos?</span>

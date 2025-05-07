@@ -37,6 +37,7 @@ export const restaurants: Restaurant[] = [
                 type: "single",
                 required: true,
                 title: "qual o tamanho?",
+                subtitle: "escolha 1",
                 options: [
                   {
                     id: "medio",
