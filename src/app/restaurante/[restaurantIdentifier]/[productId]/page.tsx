@@ -1,6 +1,7 @@
 import { restaurants } from "@/data/restaurants";
 import { notFound } from "next/navigation";
-import Image from "next/image";
+import { ProductHeader } from "@/components/product/ProductHeader";
+import { ProductQuantitySelector } from "@/components/product/ProductQuantitySelector";
 
 export default async function ProductPage({
   params,
@@ -23,24 +24,9 @@ export default async function ProductPage({
   if (!product) return notFound();
 
   return (
-    <div className="pb-36 px-4 pt-2">
-      <Image
-        src={product.image as string}
-        alt={product.name}
-        width={400}
-        height={300}
-        className="rounded-lg w-full h-auto object-cover"
-      />
-      <h1 className="font-bold text-lg mt-4">{product.name}</h1>
-      <p className="text-light-text text-sm">{product.description}</p>
-      <div className="mt-2 text-purple-brand font-bold">
-        {product.multiplePrices ? "a partir de" : ""}
-        <span className="text-lg ml-1">
-          R$ {product.price.toFixed(2).replace(".", ",")}
-        </span>
-      </div>
-
-      {/* Customizações */}
+    <div className="pb-36">
+      <ProductHeader product={product} />
+      <ProductQuantitySelector product={product} />
       <div className="space-y-6 mt-6">
         {product.customizations?.map((customization, index) => (
           <div key={index}>
