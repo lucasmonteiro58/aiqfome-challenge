@@ -6,6 +6,7 @@ import { CartItemTitle } from "@/components/cart/CartItemTitle";
 import { CartEdit } from "@/components/cart/CartEdit";
 import { CartItemList } from "@/components/cart/CartItemList";
 import { CartEmpty } from "./CartEmpty";
+import { formatCurrency } from "@/lib/utils";
 
 export default function CartContent() {
   const { items, restaurant } = useCartStore();
@@ -52,14 +53,14 @@ export default function CartContent() {
         ))}
       </div>
 
-      <div className="sm:relative fixed bottom-0 left-0 right-0 bg-white border-t p-4">
-        <div className="flex justify-between mb-3 px-1 text-sm">
-          <span className="text-muted-foreground font-semibold">subtotal</span>
-          <strong className="text-purple-brand text-lg">
-            R$ {subtotal.toFixed(2).replace(".", ",")}
+      <div className="sm:relative fixed bottom-0 left-0 right-0 bg-white border-t p-4 flex gap-4 justify-end">
+        <div className="flex flex-col mb-3 px-1 text-sm ">
+          <span className="text-dark-text font-bold">subtotal</span>
+          <strong className="text-purple-brand text-xl text-nowrap font-extrabold">
+            {formatCurrency(subtotal)}
           </strong>
         </div>
-        <button className="w-full bg-purple-brand text-white py-3 rounded-lg font-bold">
+        <button className="w-full bg-purple-brand text-white py-3 rounded-lg font-bold h-min max-w-[300px]">
           ir para pagamento
         </button>
       </div>
