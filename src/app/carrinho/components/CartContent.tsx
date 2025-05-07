@@ -52,7 +52,7 @@ export default function CartContent() {
         ))}
       </div>
 
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t p-4">
+      <div className="sm:relative fixed bottom-0 left-0 right-0 bg-white border-t p-4">
         <div className="flex justify-between mb-3 px-1 text-sm">
           <span className="text-muted-foreground font-semibold">subtotal</span>
           <strong className="text-purple-brand text-lg">

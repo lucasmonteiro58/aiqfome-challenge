@@ -54,33 +54,34 @@ export default async function ProductPage({
   if (!product) return notFound();
 
   return (
-    <div>
-      <ProductHeader product={product} />
-      <ProductQuantitySelector product={product} restaurant={restaurant} />
+    <>
+      <div className="container mx-auto">
+        <ProductHeader product={product} />
+        <ProductQuantitySelector product={product} restaurant={restaurant} />
 
-      <div className="space-y-6 mt-6">
-        {product.customizations?.map((customization, index) => (
-          <div key={index}>
-            <ProductCustomizationTitle customization={customization} />
-            {customization.type === "single" && (
-              <SingleCustomization customization={customization} />
-            )}
-            {customization.type === "multiple" && (
-              <MultipleCustomization customization={customization} />
-            )}
-            {customization.type === "quantity" && (
-              <QuantityCustomization customization={customization} />
-            )}
-          </div>
-        ))}
+        <div className="space-y-6 mt-6">
+          {product.customizations?.map((customization, index) => (
+            <div key={index}>
+              <ProductCustomizationTitle customization={customization} />
+              {customization.type === "single" && (
+                <SingleCustomization customization={customization} />
+              )}
+              {customization.type === "multiple" && (
+                <MultipleCustomization customization={customization} />
+              )}
+              {customization.type === "quantity" && (
+                <QuantityCustomization customization={customization} />
+              )}
+            </div>
+          ))}
+        </div>
+
+        <div className="px-4 mt-6 mb-12">
+          <ProductObservation />
+        </div>
+        <TicketButton />
       </div>
-
-      <div className="px-4 mt-6 mb-12">
-        <ProductObservation />
-      </div>
-
       <Footer />
-      <TicketButton />
-    </div>
+    </>
   );
 }

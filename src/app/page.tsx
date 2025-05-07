@@ -10,33 +10,38 @@ export default function Home() {
   const closedRestaurants = restaurants.filter((r) => !r.isOpen);
 
   return (
-    <div className="min-h-[calc(100vh-60px)] flex flex-col">
-      <div className="flex-grow">
+    <div className="flex flex-col min-h-screen">
+      <div className="bg-white shadow-sm">
         <SearchInput />
+      </div>
+      <div className="container mx-auto mt-2 px-4">
         <Image
           src="/images/banner.png"
           alt="Banner"
-          width={1200}
-          height={300}
-          className="w-full h-auto mt-[1px]"
+          width={1600}
+          height={600}
+          className="w-full h-auto rounded-lg"
         />
-        <div className="p-4 space-y-2">
-          <h1 className="text-xl font-bold mb-2 text-purple-text">abertos</h1>
-          <div className="space-y-3">
+      </div>
+      <main className="flex-grow container mx-auto px-4 py-6">
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold text-purple-text mb-4">Abertos</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {(openedRestaurants as Restaurant[]).map((r) => (
               <RestaurantCard key={r.id} {...r} />
             ))}
           </div>
-        </div>
-      </div>
-      <div className="p-4 space-y-2 mb-10">
-        <h1 className="text-xl font-bold mb-2 text-purple-text">fechados</h1>
-        <div className="space-y-3">
-          {closedRestaurants.map((r) => (
-            <RestaurantCard key={r.id} {...r} />
-          ))}
-        </div>
-      </div>
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-bold text-purple-text mb-4">Fechados</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {closedRestaurants.map((r) => (
+              <RestaurantCard key={r.id} {...r} />
+            ))}
+          </div>
+        </section>
+      </main>
 
       <Footer />
     </div>

@@ -26,7 +26,7 @@ export function TicketButton() {
   if (!hasItems) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 p-4">
+    <div className="sm:relative fixed bottom-0 left-0 right-0 p-4 flex justify-center ">
       <button
         className="w-full bg-purple-brand text-white py-3 rounded-lg font-bold mb-1"
         onClick={handleClick}

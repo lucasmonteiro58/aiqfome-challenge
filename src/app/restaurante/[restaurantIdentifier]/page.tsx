@@ -40,29 +40,31 @@ export default async function RestaurantPage({
   if (!restaurant) return notFound();
 
   return (
-    <div className="min-h-screen flex flex-col mt-2">
-      <div className="flex-grow">
-        <div className="py-4 space-y-3">
-          <RestaurantHeader
-            id={restaurant.id}
-            name={restaurant.name}
-            logo={restaurant.logo}
-          />
+    <div className="flex flex-col mt-2">
+      <div className="min-h-[calc(100vh-190px)] container mx-auto">
+        <div className="flex-grow">
+          <div className="py-4 space-y-3">
+            <RestaurantHeader
+              id={restaurant.id}
+              name={restaurant.name}
+              logo={restaurant.logo}
+            />
 
-          <RestaurantMetaInfo
-            deliveryFee={restaurant.deliveryFee}
-            deliveryEstimate={restaurant.deliveryEstimate}
-            distanceKm={restaurant.distanceKm}
-            freeDeliveryThreshold={restaurant.freeDeliveryThreshold}
-            rating={restaurant.rating}
-            minOrder={restaurant.minOrder}
-            deliveryType={restaurant.deliveryType}
-          />
+            <RestaurantMetaInfo
+              deliveryFee={restaurant.deliveryFee}
+              deliveryEstimate={restaurant.deliveryEstimate}
+              distanceKm={restaurant.distanceKm}
+              freeDeliveryThreshold={restaurant.freeDeliveryThreshold}
+              rating={restaurant.rating}
+              minOrder={restaurant.minOrder}
+              deliveryType={restaurant.deliveryType}
+            />
 
-          <RestaurantCategoryList
-            categories={restaurant.categories}
-            restaurantIdentifier={restaurant.identifier}
-          />
+            <RestaurantCategoryList
+              categories={restaurant.categories}
+              restaurantIdentifier={restaurant.identifier}
+            />
+          </div>
         </div>
       </div>
       <Footer />
