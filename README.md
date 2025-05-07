@@ -64,7 +64,7 @@ A aplicação permite:
 
 ## 📁 Estrutura de Pastas
 
-\`\`\`
+```
 app/
   └── [restaurant]/[product] – Página dinâmica do produto com customizações
   └── ticket – Visualização do carrinho
@@ -79,32 +79,31 @@ stores/
   └── validation.store.ts – Store com Zustand + persistência (Validação de customizações)
 lib/
   └── utils.ts – Funções auxiliares, como cálculo de subtotal
-\`\`\`
+```
 
 ---
 
 ## ▶️ Como rodar o projeto
 
 1. Clone o repositório:
-   \`\`\`bash
+   ```bash
    git clone https://github.com/lucasmonteiro58/aiqfome-challenge.git
    cd aiqfome-desafio
-   \`\`\`
-
+   ```
 2. Instale as dependências:
-   \`\`\`bash
+   ```bash
    npm install
-   \`\`\`
-
+   ```
+   
 3. Rode o servidor de desenvolvimento:
-   \`\`\`bash
+ ```bash
    npm run dev
-   \`\`\`
+ ```
 
 4. Acesse:
-   \`\`\`
+  ```bash
    http://localhost:3000
-   \`\`\`
+```
 
 ---
 
