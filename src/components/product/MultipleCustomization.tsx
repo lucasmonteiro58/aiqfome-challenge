@@ -7,6 +7,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { CircleDollarSign } from "lucide-react";
 import { formatCurrency } from "@/lib/utils";
 import { useCartStore } from "@/stores/cart.store";
+import { useValidationStore } from "@/stores/validation.store";
 
 interface CustomizationProps {
   customization: Customization;
@@ -15,6 +16,7 @@ interface CustomizationProps {
 export function MultipleCustomization({ customization }: CustomizationProps) {
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
   const { items, editingIndex } = useCartStore();
+  const { errors, setError, clearError } = useValidationStore();
 
   const isMaxSelected = selectedOptions.length >= (customization.max || 0);
 
@@ -41,6 +43,18 @@ export function MultipleCustomization({ customization }: CustomizationProps) {
           : [...prev, optionId];
       return newSelectedOptions;
     });
+
+    if (
+      customization.required &&
+      newSelectedOptions.length < (customization.min || 0)
+    ) {
+      setError(
+        customization.title,
+        `Selecione pelo menos ${customization.min} itens.`
+      );
+    } else {
+      clearError(customization.title);
+    }
 
     if (editingIndex === null) return;
 
@@ -99,6 +113,9 @@ export function MultipleCustomization({ customization }: CustomizationProps) {
           </Label>
         </div>
       ))}
+      {errors[customization.title] && (
+        <p className="text-red-500 text-sm">{errors[customization.title]}</p>
+      )}
     </div>
   );
 }

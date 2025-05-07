@@ -1,19 +1,35 @@
 "use client";
 
-import { useCartStore } from "@/stores/cart.store";
 import { useRouter } from "next/navigation";
+import { useCartStore } from "@/stores/cart.store";
+import { useValidationStore } from "@/stores/validation.store";
+import { useEffect } from "react";
 
 export function TicketButton() {
-  const cartItems = useCartStore((state) => state.items);
+  const { items } = useCartStore();
+  const { validateCart } = useValidationStore();
   const router = useRouter();
 
-  if (cartItems.length === 0) return null;
+  const hasItems = items.length > 0;
+
+  function handleClick() {
+    const valid = validateCart(items);
+    if (valid) {
+      router.push("/carrinho");
+    }
+  }
+
+  useEffect(() => {
+    useValidationStore.getState().clearAll();
+  }, []);
+
+  if (!hasItems) return null;
 
   return (
     <div className="fixed bottom-0 left-0 right-0 p-4">
       <button
-        onClick={() => router.push("/carrinho")}
         className="w-full bg-purple-brand text-white py-3 rounded-lg font-bold mb-1"
+        onClick={handleClick}
       >
         ver ticket
       </button>

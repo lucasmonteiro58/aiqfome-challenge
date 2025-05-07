@@ -19,18 +19,32 @@ export function SingleCustomization({ customization }: CustomizationProps) {
   const { items, editingIndex } = useCartStore();
 
   useEffect(() => {
+    const defaultOption =
+      customization.options.find((opt) => opt.default) ||
+      customization.options[0];
+
     if (
       editingIndex !== null &&
       items[editingIndex] &&
-      items[editingIndex].selectedCustomizations?.[customization.title]
+      (!items[editingIndex].selectedCustomizations?.[customization.title] ||
+        items[editingIndex].selectedCustomizations[customization.title]
+          .length === 0)
     ) {
-      const selected =
-        items[editingIndex].selectedCustomizations[customization.title];
-      if (selected?.[0]?.id) {
-        setSelectedOptionId(selected[0].id);
-      }
+      const updatedItem = { ...items[editingIndex] };
+      updatedItem.selectedCustomizations = {
+        ...updatedItem.selectedCustomizations,
+        [customization.title]: [defaultOption],
+      };
+
+      useCartStore.setState((state) => {
+        const newItems = [...state.items];
+        newItems[editingIndex] = updatedItem;
+        return { items: newItems };
+      });
+
+      setSelectedOptionId(defaultOption.id);
     }
-  }, [editingIndex, items, customization.title]);
+  }, [editingIndex, items, customization.title, customization.options]);
 
   const handleSelectOption = (optionId: string) => {
     setSelectedOptionId(optionId);
