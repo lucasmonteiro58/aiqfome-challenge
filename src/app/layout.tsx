@@ -9,7 +9,7 @@ const nunito = Nunito({
 });
 
 export const metadata: Metadata = {
-  title: "Ai Que Fome",
+  title: "Aiqfome",
   description: "Um app de delivery feito com Next.js",
 };
 

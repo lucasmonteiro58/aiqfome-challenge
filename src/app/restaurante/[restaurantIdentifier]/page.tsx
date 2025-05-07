@@ -21,7 +21,9 @@ export async function generateMetadata({
     (r) => r.identifier === restaurantIdentifier
   );
   return {
-    title: restaurant?.name ?? "Restaurante",
+    title: restaurant
+      ? "Aiqfome - " + restaurant.name
+      : "Aiqfome - Restaurante",
   };
 }
 

@@ -21,6 +21,7 @@ export function RestaurantTitle({ product }: { product: Product }) {
             alt={substance}
             width={20}
             height={20}
+            className="w-5 h-5"
             title={substance}
           />
         ))}

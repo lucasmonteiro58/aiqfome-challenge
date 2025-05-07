@@ -19,6 +19,7 @@ export function DeliveryType({ type, deliveryFee }: DeliveryTypeProps) {
       <Image
         src={`/images/icons/${type}.svg`}
         alt="icon"
+        className="w-6 h-6"
         width={24}
         height={24}
       />
