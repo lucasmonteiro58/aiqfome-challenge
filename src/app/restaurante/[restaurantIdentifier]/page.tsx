@@ -13,7 +13,7 @@ type RestaurantPageProps = {
 export async function generateMetadata({
   params,
 }: RestaurantPageProps): Promise<Metadata> {
-  const { restaurantIdentifier } = await params;
+  const { restaurantIdentifier } = params;
   const restaurant = restaurants.find(
     (r) => r.identifier === restaurantIdentifier
   );
@@ -23,7 +23,7 @@ export async function generateMetadata({
 }
 
 export default async function RestaurantPage({ params }: RestaurantPageProps) {
-  const { restaurantIdentifier } = await params;
+  const { restaurantIdentifier } = params;
   const restaurant = restaurants.find(
     (r) => r.identifier === restaurantIdentifier
   );

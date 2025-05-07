@@ -10,12 +10,12 @@ import { ProductObservation } from "@/components/product/ProductObservation";
 import { Footer } from "@/components/Footer";
 import { TicketButton } from "@/components/TicketButton";
 
-export default async function ProductPage({
+export default function ProductPage({
   params,
 }: {
   params: { restaurantIdentifier: string; productId: string };
 }) {
-  const { restaurantIdentifier, productId } = await params;
+  const { restaurantIdentifier, productId } = params;
   const restaurant = restaurants.find(
     (r) => r.identifier === restaurantIdentifier
   );
