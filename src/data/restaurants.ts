@@ -329,6 +329,7 @@ export const restaurants: Restaurant[] = [
             price: 7.0,
             hasPromotions: false,
             multiplePrices: false,
+            substances: ["candy"],
             customizations: [
               {
                 id: "molho",
@@ -488,6 +489,7 @@ export const restaurants: Restaurant[] = [
             price: 13.99,
             hasPromotions: false,
             multiplePrices: true,
+            substances: ["spicy"],
             customizations: [
               {
                 id: "nivel-picancia",
@@ -573,6 +575,7 @@ export const restaurants: Restaurant[] = [
             price: 7,
             hasPromotions: false,
             multiplePrices: false,
+            substances: ["vegan"],
             customizations: [],
           },
         ],
@@ -593,6 +596,7 @@ export const restaurants: Restaurant[] = [
             hasPromotions: false,
             multiplePrices: false,
             customizations: [],
+            substances: ["candy"],
           },
           {
             id: "rolinho-primavera-doce",
@@ -604,6 +608,7 @@ export const restaurants: Restaurant[] = [
             hasPromotions: false,
             multiplePrices: false,
             customizations: [],
+            substances: ["candy"],
           },
           {
             id: "guioza-chocolate",
@@ -616,6 +621,7 @@ export const restaurants: Restaurant[] = [
             hasPromotions: true,
             multiplePrices: false,
             customizations: [],
+            substances: ["candy"],
           },
         ],
       },
@@ -651,6 +657,7 @@ export const restaurants: Restaurant[] = [
             price: 10.9,
             hasPromotions: true,
             multiplePrices: true,
+            substances: ["gluten-free"],
             customizations: [
               {
                 type: "single",
@@ -801,6 +808,7 @@ export const restaurants: Restaurant[] = [
             id: "refri-lata",
             name: "Refrigerante lata",
             description: "350ml",
+            substances: ["candy"],
             image: "/images/products/refri.png",
             basePrice: 6,
             price: 6,
@@ -855,6 +863,7 @@ export const restaurants: Restaurant[] = [
             name: "Frango Teriyaki",
             description: "Frango ao molho teriyaki com vegetais",
             image: "/images/products/frango-teriyaki.png",
+            substances: ["spicy", "gluten-free"],
             basePrice: 19.9,
             price: 10.9,
             hasPromotions: true,
@@ -1065,6 +1074,7 @@ export const restaurants: Restaurant[] = [
           {
             id: "cookie",
             name: "Cookie",
+            substances: ["candy"],
             description: "Cookie de chocolate Subway",
             image: "/images/products/cookie.png",
             basePrice: 4,
@@ -1099,6 +1109,7 @@ export const restaurants: Restaurant[] = [
           {
             id: "big-mac",
             name: "Big Mac",
+            substances: ["spicy"],
             description:
               "Dois hambúrgueres, alface, queijo, molho especial, cebola e picles no pão com gergelim.",
             image: "/images/products/bigmac.png",

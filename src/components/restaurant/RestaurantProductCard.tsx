@@ -4,6 +4,7 @@ import Link from "next/link";
 import { CircleDollarSign } from "lucide-react";
 import { Product } from "@/types/restaurant";
 import { formatCurrency } from "@/lib/utils";
+import { RestaurantTitle } from "./RestaurantTitle";
 
 interface RestaurantProductCardProps {
   product: Product;
@@ -20,7 +21,7 @@ export function RestaurantProductCard({
       className="flex bg-white rounded-lg pl-2 items-center gap-6 justify-between hover:bg-gray-50 transition-colors"
     >
       <div className="flex flex-col flex-1">
-        <h1 className="font-semibold text-dark-text text-sm">{product.name}</h1>
+        <RestaurantTitle product={product} />
         <p className="text-light-text text-xs mt-1">{product.description}</p>
       </div>
 
