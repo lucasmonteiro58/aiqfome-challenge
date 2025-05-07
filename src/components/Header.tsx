@@ -11,14 +11,14 @@ export function Header() {
     router.push("/");
   };
   return (
-    <header className="bg-purple-brand px-4 py-3 text-white flex items-center justify-between">
+    <header className="bg-purple-brand px-4 py-3 text-white flex items-center justify-between sticky top-0 z-10">
       <div className="flex items-center gap-2">
         <Image
           src="/images/logo.png"
           alt="Logo"
           width={32}
           height={32}
-          className="w-auto"
+          className="w-auto cursor-pointer"
           onClick={handleLogoClick}
         />
 
