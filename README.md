@@ -2,8 +2,7 @@
 
 Este projeto foi desenvolvido como parte do processo seletivo para a vaga de Desenvolvedor Front-end na L2L Aiqfome. A proposta é entregar uma aplicação **mobile-first** que simula uma experiência de pedido de produtos em restaurantes, utilizando **React com Next.js 15** e foco em **performance, organização e usabilidade**.
 
-## 🔗 Link do projeto:
-[Acesse aqui](https://aiqfome-challenge-nine.vercel.app/)
+[Acesse aqui uma versão online](https://aiqfome-challenge-nine.vercel.app/)
 
 ## 📱 Visão Geral
 
